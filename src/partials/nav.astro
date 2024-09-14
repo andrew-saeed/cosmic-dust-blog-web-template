@@ -1,6 +1,7 @@
 ---
 import Logo from "./logo.astro"
 import Burger from "../icons/burger.astro"
+import LangPicker from "./lang-picker.astro"
 ---
 <script>
     const trigger = document.querySelector('#trigger')!
@@ -13,7 +14,7 @@ import Burger from "../icons/burger.astro"
 </script>
 <nav>
     <div id="nav-layout" 
-        class="grid grid-cols-[min-content_1fr_min-content] items-center justify-items-center
+        class="grid grid-cols-[min-content_1fr_4.25rem] items-center justify-items-center
         bg-black-dark
         text-white-light font-bold capitalize
         md:p-2"
@@ -61,9 +62,9 @@ import Burger from "../icons/burger.astro"
         </ul>
         <div 
             id="ctrls"
-            class="row-start-1 row-end-2 col-start-3 col-end-4"
+            class="h-full row-start-1 row-end-2 col-start-3 col-end-4"
         >
-            lang
+            <LangPicker />
         </div>
     </div>
 </nav>

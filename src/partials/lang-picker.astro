@@ -1,0 +1,60 @@
+---
+import ArrowDown from "../icons/arrow-down.astro"
+---
+<script>
+    import clickOutsideHandler from "../lib/clickOutsideHandler.ts"
+    
+    const label = document.querySelector<HTMLElement>('#label')!
+    const langsList = document.querySelector<HTMLElement>('#langs-list')!
+    const langsListItems = langsList.querySelectorAll<HTMLElement>('li')!
+    langsListItems.forEach((item) => {
+        item.addEventListener('click', ()=>{
+            label.innerText = item.innerText
+            langsList.style.opacity = '0'
+        })
+    })
+
+    const trigger = document.querySelector<HTMLElement>('#lang-picker_trigger')!
+    const arrowDown = document.querySelector<HTMLElement>('#arrow-down')!
+    langsList.style.visibility = 'hidden'
+    langsList.style.opacity = '0'
+    langsList.ontransitionend = () => {
+        if(langsList.style.opacity === '0') {
+            langsList.style.visibility = 'hidden'
+        }
+    }
+    trigger.addEventListener('click', () => {
+        if(langsList.style.visibility === 'hidden') {
+            langsList.style.visibility = 'visible'
+            langsList.style.opacity = '1'
+            arrowDown.style.transform = 'rotate(180deg)'
+        }
+        else {
+            langsList.style.opacity = '0'
+            arrowDown.style.transform = 'rotate(0deg)'
+        }
+    })
+
+    clickOutsideHandler.add(trigger, ()=> {
+        langsList.style.opacity = '0'
+        arrowDown.style.transform = 'rotate(0deg)'
+    })
+</script>
+<div id="lang-picker" class="relative h-full flex justify-center">
+    <div id="lang-picker_trigger" class="flex items-center overflow-hidden">
+        <div id="label">en</div>
+        <div id="arrow-down" class="w-[1.5rem] transition duration-300 ease-in-out">
+            <ArrowDown />
+        </div>
+    </div>
+    <ul id="langs-list" 
+        class="absolute top-full right-0
+        bg-black-dark
+        p-2
+        transition duration-300 ease-in-out
+        [&_li]:px-2 [&_li]:cursor-pointer [&_li:hover]:bg-black-light"
+    >
+        <li>en</li>
+        <li>العربية</li>
+    </ul>
+</div>
