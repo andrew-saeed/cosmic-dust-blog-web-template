@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/base.astro"
-import PageHeader from "../theme/page-header.astro"
+import PageHeader from "../partials/page-header.astro"
+import Nav from "../partials/nav.astro"
 ---
 
 <Base>
@@ -13,6 +14,6 @@ import PageHeader from "../theme/page-header.astro"
 	<meta property="og:type" content="website">
 	
 	<main slot="main">
-		<PageHeader>page header</PageHeader>
+		<Nav></Nav>
 	</main>
 </Base>

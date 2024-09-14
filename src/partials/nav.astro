@@ -1,0 +1,69 @@
+---
+import Logo from "./logo.astro"
+import Burger from "../icons/burger.astro"
+---
+<script>
+    const trigger = document.querySelector('#trigger')!
+    const links = trigger.nextElementSibling! as HTMLElement
+    links.style.maxHeight = '0px'
+    trigger.addEventListener('click', () => {
+        if(links.style.maxHeight === '0px') links.style.maxHeight = links.scrollHeight + 'px'
+        else links.style.maxHeight = '0px'
+    })
+</script>
+<nav>
+    <div id="nav-layout" 
+        class="grid grid-cols-[min-content_1fr_min-content] items-center justify-items-center
+        bg-black-dark
+        text-white-light font-bold capitalize
+        md:p-2"
+    >
+        <div id="logo" 
+            class="w-[15rem]
+            row-start-1 row-end-2 col-start-2 col-end-3 md:col-start-1 md:col-end-2
+            px-4 py-2"
+        >
+            <Logo />
+        </div>
+        <div id="trigger" 
+            class="w-[3rem]
+            row-start-1 row-end-2 col-start-1 col-end-2 md:hidden
+            cursor-pointer"
+        >
+            <Burger />
+        </div>
+        <ul id="links"
+            class="max-h-0 md:!max-h-[unset] w-full
+            flex flex-col md:flex-row
+            row-start-2 row-end-3 md:row-start-1 md:row-end-2 col-start-1 col-end-4 md:col-start-2 md:col-end-3
+            overflow-hidden
+            transition-[max-height] duration-300 ease-in-out
+            [&_li_a]:block [&_li_a]:w-full [&_li_a]:text-center [&_li_a]:font-bold [&_li_a]:p-2 [&_li_a:hover]:bg-black-light"
+        >
+            <li>
+                <a href="#">home</a>
+            </li>
+            <li>
+                <a href="#">about</a>
+            </li>
+            <li>
+                <a href="#">page 1</a>
+            </li>
+            <li>
+                <a href="#">page 2</a>
+            </li>
+            <li>
+                <a href="#">page 3</a>
+            </li>
+            <li>
+                <a href="#">page 4</a>
+            </li>
+        </ul>
+        <div 
+            id="ctrls"
+            class="row-start-1 row-end-2 col-start-3 col-end-4"
+        >
+            lang
+        </div>
+    </div>
+</nav>
