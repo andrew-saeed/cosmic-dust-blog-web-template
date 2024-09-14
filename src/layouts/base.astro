@@ -1,8 +1,18 @@
+---
+import Nav from '../partials/nav.astro'
+
+interface Props {
+    lang: string;
+    dir: string;
+}
+
+const {lang, dir} = Astro.props
+---
 <style lang="scss" is:global>
 
     :root {
         scroll-behavior: smooth;
-    
+
         --white-light: #FEFAE0;
         --white-dark: #eae6cf;
         --black-light: #475f2b;
@@ -57,7 +67,8 @@
     }
 </style>
 <script>
-    document.documentElement.lang = 'en'
+    document.documentElement.lang = `${document.body.getAttribute('data-lang')}`
+    document.documentElement.dir = `${document.body.getAttribute('data-dir')}`
 </script>
 <html>
     <meta charset="utf-8" />
@@ -66,8 +77,8 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <slot />
 
-    <body class="bg-white-light text-base text-black-dark font-mulish">
-        
+    <body data-lang={lang} data-dir={dir} class="bg-white-light text-base text-black-dark font-mulish">
+        <Nav></Nav>
         <slot name="main" />
     </body>
 </html>
