@@ -4,6 +4,7 @@ const meta = defineCollection({
     type: 'data',
     schema: z.object({
         "pathname": z.string(),
+        "dir": z.string(),
         "lang-picker": z.object({
             name: z.string(),
             link: z.string()

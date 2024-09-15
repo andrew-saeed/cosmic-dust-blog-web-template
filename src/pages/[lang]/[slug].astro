@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content'
+import Base from '../../layouts/base.astro'
+
+export async function getStaticPaths() {
+
+    const langsMeta = await getCollection('meta')
+    const posts = await getCollection('posts')
+    const postsParams = posts.map(post => {
+        const [lang, slug] = post.slug.split("/")
+        const currentLangMeta = langsMeta.filter((langMeta) => langMeta.id === lang)[0]
+        return {
+            params: {lang, slug}, 
+            props: {
+                post,
+                dir: currentLangMeta.data.dir,
+                lang
+            }
+        }
+    })
+    return postsParams
+}
+
+const {post, dir, lang} = Astro.props
+const {Content} = await post.render()
+---
+<style lang="scss" is:global>
+    h2 {
+        font-size: 2.25rem;
+        text-transform: capitalize;
+        margin: 4rem 0 1.25rem 0;
+
+        & + p {
+            font-size: 1.125rem;
+        }
+    }
+</style>
+<Base lang={lang} dir={dir}>
+    <title>{post.data.title}</title>
+	<meta name="description" content={post.data.title}>
+    
+    <main slot="main">
+
+        <article class="px-2 py-16">
+            <header>
+                <h1 class="text-large font-black capitalize leading-large">{post.data.title}</h1>
+                <p class="text-base text-gray-dark leading-base">{post.data.date}</p>
+                <p class="text-base-1 leading-base-1 uppercase">
+                    <span class="inline-block px-2 border border-black-dark rounded-lg">{post.data.category}</span>
+                </p>
+            </header>
+            <Content />
+        </article>
+    </main>
+</Base>
