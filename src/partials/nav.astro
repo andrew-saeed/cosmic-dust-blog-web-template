@@ -4,10 +4,14 @@ import Burger from "../icons/burger.astro"
 import LangPicker from "./lang-picker.astro"
 import {getCollection} from "astro:content"
 
-const {pathname} = Astro.url
+interface Props {
+    lang: string
+}
+
+const {lang} = Astro.props
 const meta = await getCollection('meta')
-const currentLangMeta = meta.filter(({data}) => {
-    return pathname === data.pathname
+const currentLangMeta = meta.filter(langMeta => {
+    return langMeta.id === lang
 })
 ---
 <script>
@@ -59,7 +63,7 @@ const currentLangMeta = meta.filter(({data}) => {
             id="ctrls"
             class="h-full row-start-1 row-end-2 col-start-3 col-end-4"
         >
-            <LangPicker />
+            <LangPicker lang={lang} />
         </div>
     </div>
 </nav>

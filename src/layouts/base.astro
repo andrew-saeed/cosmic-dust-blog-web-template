@@ -79,7 +79,7 @@ const {lang, dir} = Astro.props
     <slot />
 
     <body data-lang={lang} data-dir={dir} class="bg-white-light text-base text-black-dark font-ibm-plex-sans">
-        <Nav></Nav>
+        <Nav lang={lang}></Nav>
         <slot name="main" />
     </body>
 </html>

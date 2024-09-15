@@ -2,13 +2,17 @@
 import ArrowDown from "../icons/arrow-down.astro"
 import {getCollection} from "astro:content"
 
-const {pathname} = Astro.url
+interface Props {
+    lang: string
+}
+
+const {lang} = Astro.props
 const meta = await getCollection('meta')
-const availableLangs = meta.filter(({data}) => {
-    return pathname !== data.pathname
+const availableLangs = meta.filter(metaLang => {
+    return metaLang.id !== lang
 })
-const currentLang = meta.filter(({data}) => {
-    return pathname === data.pathname
+const currentLang = meta.filter(metaLang => {
+    return metaLang.id === lang
 })
 ---
 <style lang="scss">
