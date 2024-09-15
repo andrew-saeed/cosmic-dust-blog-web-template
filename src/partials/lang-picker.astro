@@ -5,10 +5,10 @@ import {getCollection} from "astro:content"
 const {pathname} = Astro.url
 const meta = await getCollection('meta')
 const availableLangs = meta.filter(({data}) => {
-    return pathname !== data["lang-picker"].link
+    return pathname !== data.pathname
 })
 const currentLang = meta.filter(({data}) => {
-    return pathname === data["lang-picker"].link
+    return pathname === data.pathname
 })
 ---
 <style lang="scss">

@@ -1,6 +1,33 @@
 {
+    "pathname": "/",
     "lang-picker": {
         "name": "en",
         "link": "/"
-    }
+    },
+    "nav": [
+        {
+            "name": "home",
+            "link": "/"
+        },
+        {
+            "name":  "about",
+            "link": "/about"
+        },
+        {
+            "name": "page 1",
+            "link": "/page1"
+        },
+        {
+            "name": "page 2",
+            "link": "/page2"
+        },
+        {
+            "name": "page 3",
+            "link": "/page3"
+        },
+        {
+            "name": "page 4",
+            "link": "/page4"
+        }
+    ]
 }

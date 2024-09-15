@@ -2,6 +2,13 @@
 import Logo from "./logo.astro"
 import Burger from "../icons/burger.astro"
 import LangPicker from "./lang-picker.astro"
+import {getCollection} from "astro:content"
+
+const {pathname} = Astro.url
+const meta = await getCollection('meta')
+const currentLang = meta.filter(({data}) => {
+    return pathname === data.pathname
+})
 ---
 <script>
     const trigger = document.querySelector('#trigger')!
@@ -38,27 +45,15 @@ import LangPicker from "./lang-picker.astro"
             flex flex-col md:flex-row
             row-start-2 row-end-3 md:row-start-1 md:row-end-2 col-start-1 col-end-4 md:col-start-2 md:col-end-3
             overflow-hidden
-            transition-[max-height] duration-300 ease-in-out
-            [&_li_a]:block [&_li_a]:w-full [&_li_a]:text-center [&_li_a]:font-bold [&_li_a]:p-2 [&_li_a:hover]:bg-black-light"
+            transition-[max-height] duration-300 ease-in-out"
         >
-            <li>
-                <a href="#">home</a>
-            </li>
-            <li>
-                <a href="#">about</a>
-            </li>
-            <li>
-                <a href="#">page 1</a>
-            </li>
-            <li>
-                <a href="#">page 2</a>
-            </li>
-            <li>
-                <a href="#">page 3</a>
-            </li>
-            <li>
-                <a href="#">page 4</a>
-            </li>
+            {
+                currentLang[0]?.data.nav.map(item => {
+                    return <li>
+                        <a class="w-full block text-center font-bold p-2 hover:bg-black-light" href={item.link}>{item.name}</a>
+                    </li>
+                })
+            }
         </ul>
         <div 
             id="ctrls"

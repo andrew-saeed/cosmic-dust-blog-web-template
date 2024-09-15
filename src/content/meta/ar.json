@@ -1,6 +1,33 @@
 {
+    "pathname": "/ar/",
     "lang-picker": {
         "name": "العربية",
         "link": "/ar/"
-    }
+    },
+    "nav": [
+        {
+            "name": "ابداء",
+            "link": "/ar/"
+        },
+        {
+            "name":  "عن القالب",
+            "link": "/ar/about"
+        },
+        {
+            "name": "صفحة 1",
+            "link": "/ar/page1"
+        },
+        {
+            "name": "صفحة 2",
+            "link": "/ar/page2"
+        },
+        {
+            "name": "صفحة 3",
+            "link": "/ar/page3"
+        },
+        {
+            "name": "صفحة 4",
+            "link": "/ar/page4"
+        }
+    ]
 }
