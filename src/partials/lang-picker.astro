@@ -1,6 +1,26 @@
 ---
 import ArrowDown from "../icons/arrow-down.astro"
+import {getCollection} from "astro:content"
+
+const {pathname} = Astro.url
+const meta = await getCollection('meta')
+const availableLangs = meta.filter(({data}) => {
+    return pathname !== data["lang-picker"].link
+})
+const currentLang = meta.filter(({data}) => {
+    return pathname === data["lang-picker"].link
+})
 ---
+<style lang="scss">
+    #lang-picker {
+        html[dir=rtl] & {
+            #langs-list {
+                right: unset;
+                left: 0;
+            }
+        }
+    }
+</style>
 <script>
     import clickOutsideHandler from "../lib/clickOutsideHandler.ts"
     
@@ -42,7 +62,7 @@ import ArrowDown from "../icons/arrow-down.astro"
 </script>
 <div id="lang-picker" class="relative h-full flex justify-center">
     <div id="lang-picker_trigger" class="flex items-center overflow-hidden cursor-pointer">
-        <div id="label">en</div>
+        <div id="label">{currentLang[0]?.data["lang-picker"].name}</div>
         <div id="arrow-down" class="w-[1.5rem] transition duration-300 ease-in-out">
             <ArrowDown />
         </div>
@@ -51,10 +71,18 @@ import ArrowDown from "../icons/arrow-down.astro"
         class="absolute top-full right-0
         bg-black-dark
         p-2
-        transition duration-300 ease-in-out
-        [&_li]:px-2 [&_li]:cursor-pointer [&_li:hover]:bg-black-light"
+        transition duration-300 ease-in-out"
     >
-        <li>en</li>
-        <li>العربية</li>
+        {
+            availableLangs.map(lang => {
+                return <li>
+                    <a class="block px-2 hover:bg-black-light"
+                        href={lang.data["lang-picker"].link}
+                    >
+                        {lang.data["lang-picker"].name}
+                    </a>
+                </li>
+            })
+        }
     </ul>
 </div>

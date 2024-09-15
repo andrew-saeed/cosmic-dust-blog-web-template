@@ -8,5 +8,6 @@ export default defineConfig({
   integrations: [tailwind()],
   server: {
     port: 4200
-  }
+  },
+  trailingSlash: 'always'
 });
