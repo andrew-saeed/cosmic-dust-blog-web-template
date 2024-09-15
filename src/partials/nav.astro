@@ -6,7 +6,7 @@ import {getCollection} from "astro:content"
 
 const {pathname} = Astro.url
 const meta = await getCollection('meta')
-const currentLang = meta.filter(({data}) => {
+const currentLangMeta = meta.filter(({data}) => {
     return pathname === data.pathname
 })
 ---
@@ -48,7 +48,7 @@ const currentLang = meta.filter(({data}) => {
             transition-[max-height] duration-300 ease-in-out"
         >
             {
-                currentLang[0]?.data.nav.map(item => {
+                currentLangMeta[0]?.data.nav.map(item => {
                     return <li>
                         <a class="w-full block text-center font-bold p-2 hover:bg-black-light" href={item.link}>{item.name}</a>
                     </li>

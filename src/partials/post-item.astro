@@ -1,0 +1,29 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+    title: string;
+    date: string;
+    category: string;
+    excerpt: string;
+    link: string;
+    currentLangMeta: CollectionEntry<'meta'>[]
+}
+
+const {title, date, category, excerpt, link, currentLangMeta} = Astro.props
+---
+<article>
+    <header class="pb-4">
+        <h2>
+            <a class="text-large font-black capitalize leading-large hover:underline" href={`/${link}`}>{title}</a>
+        </h2>
+        <p class="text-base text-gray-dark leading-base">{date}</p>
+        <p class="text-base-1 leading-base-1 uppercase">
+            <span class="inline-block px-2 border border-black-dark rounded-lg">{category}</span>
+        </p>
+    </header>
+    <p class="text-base-1 leading-base-1 first-letter:capitalize">{excerpt}</p>
+    <p class="text-base-1 leading-base-1 first-letter:capitalize hover:underline">
+        <a class="text-blue-light" href={`/${link}`}>{currentLangMeta[0]?.data.btns.readmore}</a>
+    </p>
+</article>

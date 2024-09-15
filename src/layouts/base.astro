@@ -25,11 +25,12 @@ const {lang, dir} = Astro.props
         --blue-dark: #5748AE;
         --blue-dim: rgba(87, 72, 174, 0.8);
         --gray-light: #bcbcbf;
+        --gray-dark: #9ca3af;
     }
     
     /* Fonts */
-    .font-mulish {
-        font-family: "Mulish", sans-serif;
+    .font-ibm-plex-sans {
+        font-family: "IBM Plex Sans", sans-serif;
         font-optical-sizing: auto;
         font-weight: 400;
         font-style: normal;
@@ -74,10 +75,10 @@ const {lang, dir} = Astro.props
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <meta name="viewport" content="width=device-width" />
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <slot />
 
-    <body data-lang={lang} data-dir={dir} class="bg-white-light text-base text-black-dark font-mulish">
+    <body data-lang={lang} data-dir={dir} class="bg-white-light text-base text-black-dark font-ibm-plex-sans">
         <Nav></Nav>
         <slot name="main" />
     </body>

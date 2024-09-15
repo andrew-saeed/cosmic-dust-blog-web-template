@@ -29,5 +29,8 @@
             "name": "page 4",
             "link": "/page4"
         }
-    ]
+    ],
+    "btns": {
+        "readmore": "read more"
+    }
 }
