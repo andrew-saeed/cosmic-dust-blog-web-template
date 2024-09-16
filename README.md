@@ -1,47 +1,34 @@
-# Astro Starter Kit: Minimal
+# ✨Cosmic Dust
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Cosmic Dust is an Astrobuild Kickstarter web template designed for quickly creating and launching multilingual blogs.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+## ⚡Features
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- Astrobuild-based template
+- Multilingual support
+- Fast and easy blog setup
+- Kickstarter-friendly design
 
-## 🚀 Project Structure
+## 🚀Start
 
-Inside of your Astro project, you'll see the following folders and files:
+- Clone the repository
+- Install dependencies: `npm install`
+- Run the development server: `npm run dev`
+- Build for production: `npm run build`
+- Preview the build: `npm run preview`
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## ⚙️Customization
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Modify the files in the `src/content` directory to add languages and posts to your blog.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## 🤝Contributing
 
-Any static assets, like images, can be placed in the `public/` directory.
+Contributions are welcome!
 
-## 🧞 Commands
+## 🔑License
 
-All commands are run from the root of the project, from a terminal:
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 🙏Support
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+For questions or issues, please open an issue on the GitHub repository.

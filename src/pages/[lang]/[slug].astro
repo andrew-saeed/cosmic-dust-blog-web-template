@@ -41,15 +41,18 @@ const {Content} = await post.render()
     
     <main slot="main">
 
-        <article class="px-2 py-16">
-            <header>
-                <h1 class="text-large font-black capitalize leading-large">{post.data.title}</h1>
-                <p class="text-base text-gray-dark leading-base">{post.data.date}</p>
-                <p class="text-base-1 leading-base-1 uppercase">
-                    <span class="inline-block px-2 border border-black-dark rounded-lg">{post.data.category}</span>
-                </p>
-            </header>
-            <Content />
-        </article>
+        <section id="main-section">
+
+            <article>
+                <header>
+                    <h1 class="text-large font-black capitalize leading-large">{post.data.title}</h1>
+                    <p class="text-base text-gray-dark leading-base">{post.data.date}</p>
+                    <p class="text-base-1 leading-base-1 uppercase">
+                        <span class="inline-block px-2 border border-black-dark rounded-lg">{post.data.category}</span>
+                    </p>
+                </header>
+                <Content />
+            </article>
+        </section>
     </main>
 </Base>
