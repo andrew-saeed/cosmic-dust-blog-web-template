@@ -1,0 +1,74 @@
+---
+import type { GetStaticPaths } from 'astro'
+import type { CollectionEntry } from 'astro:content'
+
+interface Props {
+	page: {
+		data: CollectionEntry<'posts'>[];
+		currentPage: number;
+		lastPage: number;
+  	};
+	currentLangMeta: CollectionEntry<'meta'>[];
+	lang: string;
+	dir: string;
+	pathname: string;
+}
+
+import { getCollection } from 'astro:content'
+import Base from '../../layouts/base.astro'
+import PostItem from '../../partials/post-item.astro'
+import Paginator from '../../partials/paginator.astro'
+
+export const getStaticPaths:GetStaticPaths = async ({paginate}) => {
+	
+	const lang = 'ar'
+	const dir = 'rtl'
+	const pathname = '/ar/'
+
+	const posts = await getCollection('posts', post => {
+		return post.slug.includes(lang)
+	})
+
+	const meta = await getCollection('meta')
+	const currentLangMeta = meta.filter(({data}) => {
+    	return pathname === data.pathname
+	})
+
+	return paginate(posts, {pageSize: 5, props: {currentLangMeta, lang, dir, pathname}})
+}
+
+const { page, currentLangMeta, lang, dir, pathname } = Astro.props
+---
+
+<Base lang={lang} dir={dir}>
+	<title>Cosmic Dust - قالب ويب بلوج</title>
+	<meta name="description" content="وصف  Cosmic Dust هو  Astrobuild Kickstarter Web Template لإنشاء وإطلاق مدونة متعددة اللغات بسرعة">
+	<meta property="og:title" content="Cosmic Dust - قالب ويب بلوج">
+	<meta property="og:description" content="Astrobuild kickstarter متعددة اللغات بلوج ويب قالب">
+	<meta property="og:image" content="https://andrewsaeed.dev/me.png">
+	<meta property="og:url" content="https://cosmic-dust-web-template.netlify.app/ar">
+	<meta property="og:type" content="website">
+	
+	<main slot="main">
+		
+		<section id="main-section" class="space-y-20">
+			{
+				page.data.map(post => {
+					return <PostItem 
+						title={post.data.title}
+						date={post.data.date}
+						category={post.data.category}
+						excerpt={post.data.excerpt}
+						link={post.slug}
+						currentLangMeta={currentLangMeta}
+					/>
+				})
+			}
+
+			<div id="paginator">
+				<Paginator currentPage={page.currentPage} lastPage={page.lastPage} pathname={pathname} />	
+			</div>
+		</section>
+	</main>
+</Base>
+---

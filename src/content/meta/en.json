@@ -3,12 +3,12 @@
     "pathname": "/",
     "lang-picker": {
         "name": "en",
-        "link": "/"
+        "link": "/1/"
     },
     "nav": [
         {
             "name": "home",
-            "link": "/"
+            "link": "/1/"
         },
         {
             "name":  "about",

@@ -1,0 +1,17 @@
+---
+import LinkBtn from '../theme/link-btn.astro'
+
+interface Props {
+    currentPage: number;
+    lastPage: number;
+    pathname: string;
+}
+
+const {currentPage, lastPage, pathname} = Astro.props
+const nextLink = `${pathname}${currentPage+1}/`
+const prevLink = `${pathname}${currentPage-1}/`
+---
+<div class="max-w-screen-sm flex justify-between mx-auto">
+    <LinkBtn link={prevLink} disabled={(currentPage-1)===0}>prev</LinkBtn>
+    <LinkBtn link={nextLink} disabled={lastPage===currentPage}>next</LinkBtn>
+</div>

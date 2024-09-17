@@ -106,10 +106,25 @@ const {lang, dir} = Astro.props
         padding: 5rem 0.5rem;
         margin: 0rem auto;
     }
+    .disabled {
+        opacity: 0.6;
+        cursor: default;
+    }
 </style>
 <script>
+    // init lang and dir on html ele
     document.documentElement.lang = `${document.body.getAttribute('data-lang')}`
     document.documentElement.dir = `${document.body.getAttribute('data-dir')}`
+
+    // linkBtns disabled will preventDefault
+    const linkBtns = document.querySelectorAll<HTMLElement>('.link-btn')
+    linkBtns.forEach(linkBtn => {
+        linkBtn.addEventListener('click', (e)=> {
+            if(linkBtn.classList.contains('disabled')) {
+                e.preventDefault()
+            }
+        })
+    })
 </script>
 <html>
     <meta charset="utf-8" />

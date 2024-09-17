@@ -1,20 +1,43 @@
 ---
+import type { GetStaticPaths } from 'astro'
+import type { CollectionEntry } from 'astro:content'
+
+interface Props {
+	page: {
+		data: CollectionEntry<'posts'>[];
+		currentPage: number;
+		lastPage: number;
+  	};
+	currentLangMeta: CollectionEntry<'meta'>[];
+	lang: string;
+	dir: string;
+	pathname: string
+}
+
 import { getCollection } from 'astro:content'
 import Base from '../layouts/base.astro'
 import PostItem from '../partials/post-item.astro'
+import Paginator from '../partials/paginator.astro'
 
-const lang = 'en'
-const dir = 'ltr'
+export const getStaticPaths:GetStaticPaths = async ({paginate}) => {
+	
+	const lang = 'en'
+	const dir = 'ltr'
+	const pathname = '/'
 
-const posts = await getCollection('posts', post => {
-	return post.slug.includes(lang)
-})
+	const posts = await getCollection('posts', post => {
+		return post.slug.includes(lang)
+	})
 
-const {pathname} = Astro.url
-const meta = await getCollection('meta')
-const currentLangMeta = meta.filter(({data}) => {
-    return pathname === data.pathname
-})
+	const meta = await getCollection('meta')
+	const currentLangMeta = meta.filter(({data}) => {
+    	return pathname === data.pathname
+	})
+
+	return paginate(posts, {pageSize: 5, props: {currentLangMeta, lang, dir, pathname}})
+}
+
+const { page, currentLangMeta, lang, dir, pathname } = Astro.props
 ---
 
 <Base lang={lang} dir={dir}>
@@ -27,10 +50,10 @@ const currentLangMeta = meta.filter(({data}) => {
 	<meta property="og:type" content="website">
 	
 	<main slot="main">
-
+		
 		<section id="main-section" class="space-y-20">
 			{
-				posts.map(post => {
+				page.data.map(post => {
 					return <PostItem 
 						title={post.data.title}
 						date={post.data.date}
@@ -41,6 +64,10 @@ const currentLangMeta = meta.filter(({data}) => {
 					/>
 				})
 			}
+
+			<div id="paginator">
+				<Paginator currentPage={page.currentPage} lastPage={page.lastPage} pathname={pathname} />	
+			</div>
 		</section>
 	</main>
 </Base>

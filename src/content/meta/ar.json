@@ -3,12 +3,12 @@
     "pathname": "/ar/",
     "lang-picker": {
         "name": "العربية",
-        "link": "/ar/"
+        "link": "/ar/1/"
     },
     "nav": [
         {
             "name": "ابداء",
-            "link": "/ar/"
+            "link": "/ar/1/"
         },
         {
             "name":  "عن القالب",

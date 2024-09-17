@@ -5,7 +5,7 @@ import LangPicker from "./lang-picker.astro"
 import {getCollection} from "astro:content"
 
 interface Props {
-    lang: string
+    lang: string;
 }
 
 const {lang} = Astro.props
@@ -24,13 +24,13 @@ const currentLangMeta = meta.filter(langMeta => {
     })
 </script>
 <nav class="bg-black-dark">
-    <div id="nav-layout" 
-        class="max-w-screen-md grid grid-cols-[min-content_1fr_4.25rem] items-center justify-items-center
+    <div id="nav-layout"
+        class="max-w-screen-md grid grid-cols-[max-content_1fr_4.25rem] items-center justify-items-center
         text-white-light font-bold capitalize
         mx-auto md:p-2"
     >
         <div id="logo" 
-            class="w-[15rem]
+            class="w-full max-w-[15rem]
             row-start-1 row-end-2 col-start-2 col-end-3 md:col-start-1 md:col-end-2
             py-2"
         >
