@@ -10,6 +10,7 @@ const {lang, dir} = Astro.props
 ---
 <style lang="scss" is:global>
 
+    /* Color */
     :root {
         scroll-behavior: smooth;
 
@@ -27,7 +28,39 @@ const {lang, dir} = Astro.props
         --gray-light: #bcbcbf;
         --gray-dark: #9ca3af;
     }
-    
+
+    // mixins
+    @mixin withRtl($property, $ltr-value, $rtl-value) {
+        html[dir=ltr] & {
+            #{$property}: $ltr-value !important;
+        }
+
+        html[dir=rtl] & {
+            #{$property}: $rtl-value !important;
+        }
+    }
+
+    // LTR-RTL padding
+    .right-left-padding-1 {
+        @include withRtl(padding, 0 1rem 0 0, 0 0 0 1rem);
+    }
+    .left-right-padding-1 {
+        @include withRtl(padding, 0 0 0 1rem, 0 1rem 0 0);
+    }
+    .md-left-right-padding-1 {
+        @media screen and (min-width:768px) {
+            @include withRtl(padding, 0 0 0 1rem, 0 1rem 0 0);
+        }
+    }
+
+    // LTR-RTL margin
+    .right-left-margin-1 {
+        @include withRtl(margin, 0 1rem 0 0, 0 0 0 1rem);
+    }
+    .left-right-margin-1 {
+        @include withRtl(margin, 0 0 0 1rem, 0 1rem 0 0);
+    }
+
     /* Fonts */
     .font-ibm-plex-sans {
         font-family: "IBM Plex Sans", sans-serif;
