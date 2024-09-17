@@ -16,19 +16,19 @@
         },
         {
             "name": "صفحة 1",
-            "link": "/ar/page1/"
+            "link": "/ar/اختبار-1/"
         },
         {
             "name": "صفحة 2",
-            "link": "/ar/page2/"
+            "link": "/ar/اختبار-2/"
         },
         {
             "name": "صفحة 3",
-            "link": "/ar/page3/"
+            "link": "/ar/اختبار-3/"
         },
         {
             "name": "صفحة 4",
-            "link": "/ar/page4/"
+            "link": "/ar/اختبار-4/"
         }
     ],
     "btns": {

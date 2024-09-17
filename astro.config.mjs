@@ -9,5 +9,8 @@ export default defineConfig({
   server: {
     port: 4200
   },
-  trailingSlash: 'always'
+  trailingSlash: 'always',
+  redirects: {
+    '/': '/1/'
+  }
 });

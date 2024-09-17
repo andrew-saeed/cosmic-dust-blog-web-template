@@ -16,19 +16,19 @@
         },
         {
             "name": "page 1",
-            "link": "/page1/"
+            "link": "/test-1/"
         },
         {
             "name": "page 2",
-            "link": "/page2/"
+            "link": "/test-2/"
         },
         {
             "name": "page 3",
-            "link": "/page3/"
+            "link": "/test-3/"
         },
         {
             "name": "page 4",
-            "link": "/page4/"
+            "link": "/test-4/"
         }
     ],
     "btns": {

@@ -1,4 +1,4 @@
-# Cosmic Dust
+# Build your next blog
 
 Cosmic Dust is an Astrobuild Kickstarter web template designed for quickly creating and launching multilingual blogs.
 
