@@ -110,6 +110,24 @@ const {lang, dir} = Astro.props
         opacity: 0.6;
         cursor: default;
     }
+    .markdown-content {
+        h1 {
+            font-size: 2.25rem;
+            font-weight: bold;
+        }
+        h2 {
+            font-size: 2.25rem;
+            text-transform: capitalize;
+            margin: 4rem 0 1.25rem 0;
+    
+            & + p {
+                font-size: 1.125rem;
+            }
+        }
+        ul {
+            list-style: disc;
+        }
+    }
 </style>
 <script>
     // init lang and dir on html ele

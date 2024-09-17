@@ -24,17 +24,6 @@ export async function getStaticPaths() {
 const {post, dir, lang} = Astro.props
 const {Content} = await post.render()
 ---
-<style lang="scss" is:global>
-    h2 {
-        font-size: 2.25rem;
-        text-transform: capitalize;
-        margin: 4rem 0 1.25rem 0;
-
-        & + p {
-            font-size: 1.125rem;
-        }
-    }
-</style>
 <Base lang={lang} dir={dir}>
     <title>{post.data.title}</title>
 	<meta name="description" content={post.data.title}>
