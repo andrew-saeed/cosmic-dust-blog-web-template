@@ -11,6 +11,6 @@ export default defineConfig({
   },
   trailingSlash: 'always',
   redirects: {
-    '/': '/1/'
+    '/': '/en/1/'
   }
 });

@@ -7,7 +7,7 @@ interface Props {
     category: string;
     excerpt: string;
     link: string;
-    currentLangMeta: CollectionEntry<'meta'>[];
+    currentLangMeta: CollectionEntry<'meta'>;
 }
 
 const {title, date, category, excerpt, link, currentLangMeta} = Astro.props
@@ -24,6 +24,6 @@ const {title, date, category, excerpt, link, currentLangMeta} = Astro.props
     </header>
     <p class="text-base-1 leading-base-1 first-letter:capitalize">{excerpt}</p>
     <p class="text-base-1 leading-base-1 first-letter:capitalize hover:underline">
-        <a class="text-blue-light" href={`/${link}/`}>{currentLangMeta[0]?.data.btns.readmore}</a>
+        <a class="text-blue-light" href={`/${link}/`}>{currentLangMeta.data.btns.readmore}</a>
     </p>
 </article>

@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content'
+import Base from '../../layouts/base.astro'
+
+export async function getStaticPaths() {
+
+    const langsMeta = await getCollection('meta')
+    const pages = await getCollection('pages')
+    const postsParams = pages.map(page => {
+        const [lang, slug] = page.slug.split("/")
+        const currentLangMeta = langsMeta.filter((langMeta) => langMeta.id === lang)[0]
+        return {
+            params: {lang, name: slug}, 
+            props: {
+                page,
+                dir: currentLangMeta.data.dir,
+                lang
+            }
+        }
+    })
+    return postsParams
+}
+
+const {page, dir, lang} = Astro.props
+const {Content} = await page.render()
+---
+<Base lang={lang} dir={dir}>
+    <title>{page.data.title}</title>
+	<meta name="description" content={page.data.description}>
+
+    <main slot="main">
+
+        <section id="main-section" class="markdown-content">
+            <Content />
+        </section>
+    </main>
+</Base>

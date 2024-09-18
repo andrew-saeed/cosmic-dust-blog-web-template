@@ -1,37 +1,50 @@
 {
     "dir": "ltr",
     "pathname": "/",
+    "pages-meta": {
+        "home": {
+            "title": "Cosmic Dust - Blog Web Template",
+            "description": "Cosmic Dust is an Astrobuild Kickstarter web template to create and launch a multilingual blog quickly",
+            "og-title": "Cosmic Dust - Blog Web Template",
+            "og-description": "Astrobuild kickstarter multilingual blog web template",
+            "og-image": "https://cosmic-dust-blog-web-template.netlify.app/cosmic-dust.webp",
+            "og-url": "https://cosmic-dust-blog-web-template.netlify.app",
+            "og-type": "website"
+        }
+    },
     "lang-picker": {
         "name": "en",
-        "link": "/1/"
+        "link": "/en/1/"
     },
     "nav": [
         {
             "name": "home",
-            "link": "/1/"
+            "link": "/en/1/"
         },
         {
             "name":  "about",
-            "link": "/about/"
+            "link": "/en/about/"
         },
         {
             "name": "page 1",
-            "link": "/test-1/"
+            "link": "/en/test-1/"
         },
         {
             "name": "page 2",
-            "link": "/test-2/"
+            "link": "/en/test-2/"
         },
         {
             "name": "page 3",
-            "link": "/test-3/"
+            "link": "/en/test-3/"
         },
         {
             "name": "page 4",
-            "link": "/test-4/"
+            "link": "/en/test-4/"
         }
     ],
     "btns": {
-        "readmore": "read more"
+        "readmore": "read more",
+        "next": "next",
+        "prev": "prev"
     }
 }

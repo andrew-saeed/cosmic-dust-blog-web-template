@@ -1,17 +1,18 @@
 ---
+import type { CollectionEntry } from 'astro:content'
 import LinkBtn from '../theme/link-btn.astro'
 
 interface Props {
     currentPage: number;
     lastPage: number;
-    pathname: string;
+    currentLangMeta: CollectionEntry<'meta'>;
 }
 
-const {currentPage, lastPage, pathname} = Astro.props
-const nextLink = `${pathname}${currentPage+1}/`
-const prevLink = `${pathname}${currentPage-1}/`
+const {currentPage, lastPage, currentLangMeta} = Astro.props
+const nextLink = `/${currentLangMeta.id}/${currentPage+1}/`
+const prevLink = `/${currentLangMeta.id}/${currentPage-1}/`
 ---
 <div class="max-w-screen-sm flex justify-between mx-auto">
-    <LinkBtn link={prevLink} disabled={(currentPage-1)===0}>prev</LinkBtn>
-    <LinkBtn link={nextLink} disabled={lastPage===currentPage}>next</LinkBtn>
+    <LinkBtn link={prevLink} disabled={(currentPage-1)===0}>{currentLangMeta.data.btns.prev}</LinkBtn>
+    <LinkBtn link={nextLink} disabled={lastPage===currentPage}>{currentLangMeta.data.btns.next}</LinkBtn>
 </div>

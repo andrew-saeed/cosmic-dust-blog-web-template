@@ -1,6 +1,17 @@
 {
     "dir": "rtl",
     "pathname": "/ar/",
+    "pages-meta": {
+        "home": {
+            "title": "Cosmic Dust - قالب ويب بلوج",
+            "description": "وصف  Cosmic Dust هو  Astrobuild Kickstarter Web Template لإنشاء وإطلاق مدونة متعددة اللغات بسرعة",
+            "og-title": "Cosmic Dust - قالب ويب بلوج",
+            "og-description": "Astrobuild kickstarter متعددة اللغات بلوج ويب قالب",
+            "og-image": "https://cosmic-dust-blog-web-template.netlify.app/cosmic-dust.webp",
+            "og-url": "https://cosmic-dust-blog-web-template.netlify.app",
+            "og-type": "website"
+        }
+    },
     "lang-picker": {
         "name": "العربية",
         "link": "/ar/1/"
@@ -12,26 +23,28 @@
         },
         {
             "name":  "عن القالب",
-            "link": "/about/"
+            "link": "/ar/about/"
         },
         {
             "name": "صفحة 1",
-            "link": "/ar/اختبار-1/"
+            "link": "/ar/test-1/"
         },
         {
             "name": "صفحة 2",
-            "link": "/ar/اختبار-2/"
+            "link": "/ar/test-2/"
         },
         {
             "name": "صفحة 3",
-            "link": "/ar/اختبار-3/"
+            "link": "/ar/test-3/"
         },
         {
             "name": "صفحة 4",
-            "link": "/ar/اختبار-4/"
+            "link": "/ar/test-4/"
         }
     ],
     "btns": {
-        "readmore": "اقراء المزيد"
+        "readmore": "اقراء المزيد",
+        "next": "التالي",
+        "prev": "السابق"
     }
 }
