@@ -1,6 +1,5 @@
 {
     "dir": "rtl",
-    "pathname": "/ar/",
     "pages-meta": {
         "home": {
             "title": "Cosmic Dust - قالب ويب بلوج",
@@ -19,27 +18,33 @@
     "nav": [
         {
             "name": "ابداء",
-            "link": "/ar/1/"
+            "link": "/ar/1/",
+            "current-page-regex": "^\\/[A-Za-z0-9]{2}\\/\\d+\\/$"
         },
         {
             "name":  "عن القالب",
-            "link": "/ar/about/"
+            "link": "/ar/about/",
+            "current-page-regex": "^\\/[A-Za-z0-9]{2}\\/about\\/$"
         },
         {
             "name": "صفحة 1",
-            "link": "/ar/test-1/"
+            "link": "/ar/page-1/",
+            "current-page-regex": "^\\/[A-Za-z0-9]{2}\\/page-1\\/$"
         },
         {
             "name": "صفحة 2",
-            "link": "/ar/test-2/"
+            "link": "/ar/page-2/",
+            "current-page-regex": "^\\/[A-Za-z0-9]{2}\\/page-2\\/$"
         },
         {
             "name": "صفحة 3",
-            "link": "/ar/test-3/"
+            "link": "/ar/page-3/",
+            "current-page-regex": "^\\/[A-Za-z0-9]{2}\\/page-3\\/$"
         },
         {
             "name": "صفحة 4",
-            "link": "/ar/test-4/"
+            "link": "/ar/page-4/",
+            "current-page-regex": "^\\/[A-Za-z0-9]{2}\\/page-4\\/$"
         }
     ],
     "btns": {

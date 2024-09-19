@@ -1,6 +1,5 @@
 {
     "dir": "ltr",
-    "pathname": "/",
     "pages-meta": {
         "home": {
             "title": "Cosmic Dust - Blog Web Template",
@@ -19,27 +18,33 @@
     "nav": [
         {
             "name": "home",
-            "link": "/en/1/"
+            "link": "/en/1/",
+            "current-page-regex": "^\\/[A-Za-z0-9]{2}\\/\\d+\\/$"
         },
         {
             "name":  "about",
-            "link": "/en/about/"
+            "link": "/en/about/",
+            "current-page-regex": "^\\/[A-Za-z0-9]{2}\\/about\\/$"
         },
         {
             "name": "page 1",
-            "link": "/en/test-1/"
+            "link": "/en/page-1/",
+            "current-page-regex": "^\\/[A-Za-z0-9]{2}\\/page-1\\/$"
         },
         {
             "name": "page 2",
-            "link": "/en/test-2/"
+            "link": "/en/page-2/",
+            "current-page-regex": "^\\/[A-Za-z0-9]{2}\\/page-2\\/$"
         },
         {
             "name": "page 3",
-            "link": "/en/test-3/"
+            "link": "/en/page-3/",
+            "current-page-regex": "^\\/[A-Za-z0-9]{2}\\/page-3\\/$"
         },
         {
             "name": "page 4",
-            "link": "/en/test-4/"
+            "link": "/en/page-4/",
+            "current-page-regex": "^\\/[A-Za-z0-9]{2}\\/page-4\\/$"
         }
     ],
     "btns": {

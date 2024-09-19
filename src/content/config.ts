@@ -3,7 +3,6 @@ import { z, defineCollection } from 'astro:content'
 const meta = defineCollection({
     type: 'data',
     schema: z.object({
-        "pathname": z.string(),
         "dir": z.string(),
         "pages-meta": z.object({
             'home': z.object({
@@ -22,7 +21,8 @@ const meta = defineCollection({
         }),
         "nav": z.array(z.object({
             name: z.string(),
-            link: z.string()
+            link: z.string(),
+            "current-page-regex": z.string()
         })),
         "btns": z.object({
             "readmore": z.string(),
@@ -42,7 +42,16 @@ const posts = defineCollection({
     })
 })
 
+const pages = defineCollection({
+    type: 'content',
+    schema: z.object({
+        title: z.string(),
+        description: z.string()
+    })
+})
+
 export const collections = {
     'meta': meta,
-    'posts': posts
+    'posts': posts,
+    'pages': pages
 }
