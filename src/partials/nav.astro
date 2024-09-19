@@ -20,12 +20,32 @@ const isCurrentPage = (regexStr:string) => {
 }
 ---
 <script>
-    const trigger = document.querySelector('#trigger')!
-    const links = trigger.nextElementSibling! as HTMLElement
-    links.style.maxHeight = '0px'
+    const trigger = document.querySelector<HTMLElement>('#trigger')!
+    const linksList = trigger.nextElementSibling! as HTMLElement
+        linksList.style.maxHeight = '0px'
+    const linksListItems = linksList.querySelectorAll<HTMLElement>('li a')!
+        linksListItems.forEach((item, index) => {
+            item.style.transition = 'transform 0.3s ease-in-out, opacity 0.3s ease-in-out'
+            item.style.transitionDelay = `${index * (0.3 / linksListItems.length)}s`
+            item.style.transform = 'translateX(-150px)'
+            item.style.opacity = '0'
+        })
     trigger.addEventListener('click', () => {
-        if(links.style.maxHeight === '0px') links.style.maxHeight = links.scrollHeight + 'px'
-        else links.style.maxHeight = '0px'
+        if(linksList.style.maxHeight === '0px') {
+            linksList.style.transitionDelay = `0s`
+            linksList.style.maxHeight = linksList.scrollHeight + 'px'
+            linksListItems.forEach(item => {
+                item.style.transform = 'translateX(0px)'
+                item.style.opacity = `1`
+            })
+        } else {
+            linksList.style.transitionDelay = `0.4s`
+            linksList.style.maxHeight = '0px'
+            linksListItems.forEach(item => {
+                item.style.transform = 'translateX(-150px)'
+                item.style.opacity = `0`
+            })
+        }
     })
 </script>
 <nav class="bg-black-dark">
@@ -48,19 +68,19 @@ const isCurrentPage = (regexStr:string) => {
         >
             <Burger />
         </div>
-        <ul id="links"
+        <ul id="links-list"
             class="max-h-0 md:!max-h-[unset] w-full
             flex flex-col md:flex-row
             row-start-2 row-end-3 md:row-start-1 md:row-end-2 col-start-1 col-end-4 md:col-start-2 md:col-end-3
             md-left-right-padding-1
-            [&_li:first-of-type]:mt-4 [&_li:last-of-type]:mb-4 [&_li:first-of-type]:md:mt-0 [&_li:last-of-type]:md:mb-0
+            [&_li]:px-20 [&_li]:py-1 [&_li]:md:p-0 [&_li:first-of-type]:mt-4 [&_li:last-of-type]:mb-4 [&_li:first-of-type]:md:mt-0 [&_li:last-of-type]:md:mb-0
             overflow-hidden
             transition-[max-height] duration-300 ease-in-out"
         >
             {
                 currentLangMeta[0]?.data.nav.map(item => {
                     return <li>
-                        <a class:list={[{"current-link":isCurrentPage(item["current-page-regex"])} ,"w-full block text-center font-bold p-2 hover:bg-black-light"]} href={item.link}>{item.name}</a>
+                        <a class:list={[{"current-link":isCurrentPage(item["current-page-regex"])} ,"w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:bg-black-light"]} href={item.link}>{item.name}</a>
                     </li>
                 })
             }

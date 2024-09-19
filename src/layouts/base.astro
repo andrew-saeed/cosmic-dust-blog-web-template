@@ -129,7 +129,13 @@ const {lang, dir} = Astro.props
         }
     }
     .current-link {
-        border-bottom: var(--white-light) 0.1rem solid;
+        border: var(--white-light) 0.1rem solid;
+
+        @media screen and (min-width:768px){
+            border-top: unset;
+            border-left: unset;
+            border-right: unset;
+        }
     }
 </style>
 <script>
