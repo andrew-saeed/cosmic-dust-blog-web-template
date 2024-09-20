@@ -1,0 +1,81 @@
+---
+import type { GetStaticPaths } from 'astro'
+import type { CollectionEntry } from 'astro:content'
+
+interface Props {
+	page: {
+		data: CollectionEntry<'posts'>[];
+		currentPage: number;
+		lastPage: number;
+  	};
+	currentLangMeta: CollectionEntry<'meta'>;
+}
+
+import { getCollection } from 'astro:content'
+import Base from '../../../layouts/base.astro'
+import PostItem from '../../../partials/post-item.astro'
+import Paginator from '../../../partials/paginator.astro'
+
+export const getStaticPaths:GetStaticPaths = async ({paginate}) => {
+
+	const categoriesPostsRefs: {
+		filteredPosts: CollectionEntry<'posts'>[],
+		category: {id:number, name:string, slug:string},
+		currentLangMeta: CollectionEntry<'meta'>
+	}[] = []
+
+    const meta = await getCollection('meta')
+	const posts = await getCollection('posts')
+
+    meta.forEach((currentLangMeta) => {
+		currentLangMeta.data.categories.forEach(category => {
+			const filteredPosts = posts.filter((post) => {
+				return post.slug.includes(currentLangMeta.id) && post.data['category-id'] === category.id
+			})
+			categoriesPostsRefs.push({filteredPosts, category, currentLangMeta})
+		})
+    })
+
+	return categoriesPostsRefs.flatMap(ref => {
+		return paginate(ref.filteredPosts, {
+			params: {lang: ref.currentLangMeta.id, category: ref.category.slug},
+			props: {currentLangMeta: ref.currentLangMeta}
+		})
+	})
+}
+
+const { page, currentLangMeta } = Astro.props
+const getCategory = (categoryId:number) => {
+    const category = currentLangMeta.data.categories.find(category => category.id === categoryId)
+    return category
+}
+---
+
+<Base lang={currentLangMeta.id} dir={currentLangMeta.data.dir}>
+	<title>{currentLangMeta.data['pages-meta'].home.title}</title>
+	<meta name="description" content={currentLangMeta.data['pages-meta'].home.description}>
+	<meta property="og:title" content={currentLangMeta.data['pages-meta'].home['og-title']}>
+	<meta property="og:description" content={currentLangMeta.data['pages-meta'].home['og-description']}>
+	<meta property="og:image" content={currentLangMeta.data['pages-meta'].home['og-image']}>
+	<meta property="og:url" content={currentLangMeta.data['pages-meta'].home['og-url']}>
+	<meta property="og:type" content={currentLangMeta.data['pages-meta'].home['og-type']}>
+	
+	<section slot="main" id="main-section" class="space-y-20">
+		{
+			page.data.map(post => {
+				return <PostItem 
+					title={post.data.title}
+					date={post.data.date}
+					category={getCategory(post.data['category-id'])!.name}
+					excerpt={post.data.excerpt}
+					link={post.slug}
+					currentLangMeta={currentLangMeta}
+				/>
+			})
+		}
+
+		<div id="paginator">
+			<Paginator currentPage={page.currentPage} lastPage={page.lastPage} currentLangMeta={currentLangMeta} />	
+		</div>
+	</section>
+</Base>

@@ -33,9 +33,11 @@ const categoriesCollection: Category[] = Object.values(postsCategories)
 <ul class="flex flex-wrap gap-4">
     {
         categoriesCollection.map(category => {
-            return <li class="flex justify-between text-base-1 capitalize border border-black-dark rounded-lg overflow-hidden cursor-pointer [&:hover_.category-name]:bg-white-dark">
-                <span class="category-name px-4 py-1">{getCategory(category.id)?.name}</span>
-                <span class="category-count bg-black-dark text-white-light px-4 py-1">{category.count}</span>
+            return <li class="border border-black-dark rounded-md overflow-hidden [&:hover]:bg-white-dark">
+                <a href={`/${lang}/${getCategory(category.id)?.slug}/1/`} class="flex justify-between">
+                    <span class="category-name text-base-1 capitalize leading-base-1 px-4">{getCategory(category.id)?.name}</span>
+                    <span class="category-count flex items-center bg-black-dark text-sm-1 text-white-light px-4 py-1 self-stretch">{category.count}</span>
+                </a>
             </li>
         })
     }
