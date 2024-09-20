@@ -35,21 +35,17 @@ const {Content} = await post.render()
 <Base lang={lang} dir={dir}>
     <title>{post.data.title}</title>
 	<meta name="description" content={post.data.title}>
-    
-    <main slot="main">
 
-        <section id="main-section" class="markdown-content">
-
-            <article>
-                <header>
-                    <h1 class="text-large font-black capitalize leading-large">{post.data.title}</h1>
-                    <p class="text-base text-gray-dark leading-base">{post.data.date}</p>
-                    <p class="text-base-1 leading-base-1 uppercase">
-                        <span class="inline-block px-2 border border-black-dark rounded-lg">{post.data.category}</span>
-                    </p>
-                </header>
-                <Content />
-            </article>
-        </section>
-    </main>
+    <section slot="main" id="main-section" class="markdown-content">
+        <article>
+            <header>
+                <h1 class="text-large font-black capitalize leading-large">{post.data.title}</h1>
+                <p class="text-base text-gray-dark leading-base">{post.data.date}</p>
+                <p class="text-base-1 leading-base-1 uppercase">
+                    <span class="inline-block px-2 border border-black-dark rounded-lg">{post.data.category}</span>
+                </p>
+            </header>
+            <Content />
+        </article>
+    </section>
 </Base>

@@ -1,8 +1,8 @@
 ---
-title: 'post 3 title 3'
+title: 'post 19 title 19'
 date: '15-9-2024'
-category-id: 1
-excerpt: 'this is post 3 title 3 excerpt that works as placeholder'
+category-id: 4
+excerpt: 'this is post 19 title 19 excerpt that works as placeholder'
 ---
 
 ## sub title 1

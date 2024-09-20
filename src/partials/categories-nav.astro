@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content'
+
+interface Props {
+    lang: string
+}
+
+type Category = {id:number, count: number}
+
+const {lang} = Astro.props
+const langsMeta = await getCollection('meta')
+const currentLangMeta = langsMeta.filter((langMeta) => langMeta.id === lang)[0]
+const getCategory = (categoryId:number) => {
+    const category = currentLangMeta.data.categories.find(category => category.id === categoryId)
+    return category
+}
+
+const posts = await getCollection('posts')
+const postsCategories = posts.reduce((acc: Record<number, Category>, post) => {
+    const categoryId = post.data['category-id']
+  
+    if (acc[categoryId]) {
+        acc[categoryId].count++
+    } else {
+        acc[categoryId] = { id: categoryId, count: 1 }
+    }
+  
+    return acc
+}, {})
+
+const categoriesCollection: Category[] = Object.values(postsCategories)
+---
+<ul class="flex flex-wrap gap-4">
+    {
+        categoriesCollection.map(category => {
+            return <li class="flex justify-between text-base-1 capitalize border border-black-dark rounded-lg overflow-hidden cursor-pointer [&:hover_.category-name]:bg-white-dark">
+                <span class="category-name px-4 py-1">{getCategory(category.id)?.name}</span>
+                <span class="category-count bg-black-dark text-white-light px-4 py-1">{category.count}</span>
+            </li>
+        })
+    }
+</ul>

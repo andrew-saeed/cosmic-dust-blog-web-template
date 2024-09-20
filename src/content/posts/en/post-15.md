@@ -1,7 +1,7 @@
 ---
 title: 'post 15 title 15'
 date: '15-9-2024'
-category: 'cat 1'
+category-id: 3
 excerpt: 'this is post 15 title 15 excerpt that works as placeholder'
 ---
 

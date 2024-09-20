@@ -24,6 +24,11 @@ const meta = defineCollection({
             link: z.string(),
             "current-page-regex": z.string()
         })),
+        "categories": z.array(z.object({
+            id: z.number(),
+            name: z.string(),
+            slug: z.string()
+        })),
         "btns": z.object({
             "readmore": z.string(),
             "next": z.string(),
@@ -37,7 +42,7 @@ const posts = defineCollection({
     schema: z.object({
         title: z.string(),
         date: z.string(),
-        category: z.string(),
+        "category-id": z.number(),
         excerpt: z.string()
     })
 })

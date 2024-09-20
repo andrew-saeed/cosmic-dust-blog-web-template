@@ -43,24 +43,23 @@ const { page, currentLangMeta } = Astro.props
 	<meta property="og:url" content={currentLangMeta.data['pages-meta'].home['og-url']}>
 	<meta property="og:type" content={currentLangMeta.data['pages-meta'].home['og-type']}>
 	
-	<main slot="main">
-        <section id="main-section" class="space-y-20">
-			{
-				page.data.map(post => {
-					return <PostItem 
-						title={post.data.title}
-						date={post.data.date}
-						category={post.data.category}
-						excerpt={post.data.excerpt}
-						link={post.slug}
-						currentLangMeta={currentLangMeta}
-					/>
-				})
-			}
+	
+	<section slot="main" id="main-section" class="space-y-20">
+		{
+			page.data.map(post => {
+				return <PostItem 
+					title={post.data.title}
+					date={post.data.date}
+					category={`${post.data['category-id']}`}
+					excerpt={post.data.excerpt}
+					link={post.slug}
+					currentLangMeta={currentLangMeta}
+				/>
+			})
+		}
 
-			<div id="paginator">
-				<Paginator currentPage={page.currentPage} lastPage={page.lastPage} currentLangMeta={currentLangMeta} />	
-			</div>
-		</section>
-	</main>
+		<div id="paginator">
+			<Paginator currentPage={page.currentPage} lastPage={page.lastPage} currentLangMeta={currentLangMeta} />	
+		</div>
+	</section>
 </Base>

@@ -36,10 +36,7 @@ const {Content} = await page.render()
     <title>{page.data.title}</title>
 	<meta name="description" content={page.data.description}>
 
-    <main slot="main">
-
-        <section id="main-section" class="markdown-content">
-            <Content />
-        </section>
-    </main>
+    <section slot="main" id="main-section" class="markdown-content">
+        <Content />
+    </section>
 </Base>
