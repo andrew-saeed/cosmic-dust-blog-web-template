@@ -32,6 +32,10 @@ export const getStaticPaths:GetStaticPaths = async ({paginate}) => {
 }
 
 const { page, currentLangMeta } = Astro.props
+const getCategory = (categoryId:number) => {
+    const category = currentLangMeta.data.categories.find(category => category.id === categoryId)
+    return category
+}
 ---
 
 <Base lang={currentLangMeta.id} dir={currentLangMeta.data.dir}>
@@ -43,14 +47,13 @@ const { page, currentLangMeta } = Astro.props
 	<meta property="og:url" content={currentLangMeta.data['pages-meta'].home['og-url']}>
 	<meta property="og:type" content={currentLangMeta.data['pages-meta'].home['og-type']}>
 	
-	
 	<section slot="main" id="main-section" class="space-y-20">
 		{
 			page.data.map(post => {
 				return <PostItem 
 					title={post.data.title}
 					date={post.data.date}
-					category={`${post.data['category-id']}`}
+					category={getCategory(post.data['category-id'])!.name}
 					excerpt={post.data.excerpt}
 					link={post.slug}
 					currentLangMeta={currentLangMeta}
