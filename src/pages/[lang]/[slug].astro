@@ -8,6 +8,12 @@ interface Props {
 	post: CollectionEntry<'posts'>;
     dir: string;
     lang: string;
+    category: {
+        name: string;
+        "current-page-regex": string;
+        id: number;
+        slug: string;
+    }
 }
 
 export async function getStaticPaths() {
@@ -17,19 +23,21 @@ export async function getStaticPaths() {
     const postsParams = posts.map(post => {
         const [lang, slug] = post.slug.split("/")
         const currentLangMeta = langsMeta.filter((langMeta) => langMeta.id === lang)[0]
+        const currentCategory = currentLangMeta.data.categories.find(category => category.id === post.data['category-id'])
         return {
             params: {lang, slug}, 
             props: {
                 post,
                 dir: currentLangMeta.data.dir,
-                lang
+                lang,
+                category: currentCategory
             }
         }
     })
     return postsParams
 }
 
-const {post, dir, lang} = Astro.props
+const {post, dir, lang, category} = Astro.props
 const {Content} = await post.render()
 ---
 <Base lang={lang} dir={dir}>
@@ -42,7 +50,7 @@ const {Content} = await post.render()
                 <h1 class="text-large font-black capitalize leading-large">{post.data.title}</h1>
                 <p class="text-base text-gray-dark leading-base">{post.data.date}</p>
                 <p class="text-base-1 leading-base-1 uppercase">
-                    <span class="inline-block px-2 border border-black-dark rounded-lg">{post.data['category-id']}</span>
+                    <span class="inline-block px-2 border border-black-dark rounded-lg">{category.name}</span>
                 </p>
             </header>
             <Content />
