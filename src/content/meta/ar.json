@@ -51,27 +51,32 @@
         {
             "id": 1,
             "name": "فئة 1",
-            "slug": "فئة-1"
+            "slug": "cat-1",
+            "current-page-regex": "\\/[a-z]{2}\\/cat-1\\/[1-9]\\d*\\/"
         },
         {
             "id": 2,
             "name": "فئة 2",
-            "slug": "فئة-2"
+            "slug": "cat-2",
+            "current-page-regex": "\\/[a-z]{2}\\/cat-2\\/[1-9]\\d*\\/"
         },
         {
             "id": 3,
             "name": "فئة 3",
-            "slug": "فئة-3"
+            "slug": "cat-3",
+            "current-page-regex": "\\/[a-z]{2}\\/cat-3\\/[1-9]\\d*\\/"
         },
         {
             "id": 4,
             "name": "فئة 4",
-            "slug": "فئة-4"
+            "slug": "cat-4",
+            "current-page-regex": "\\/[a-z]{2}\\/cat-4\\/[1-9]\\d*\\/"
         },
         {
             "id": 5,
             "name": "فئة 5",
-            "slug": "فئة-5"
+            "slug": "cat-5",
+            "current-page-regex": "\\/[a-z]{2}\\/cat-5\\/[1-9]\\d*\\/"
         }
     ],
     "btns": {

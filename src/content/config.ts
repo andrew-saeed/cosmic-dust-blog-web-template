@@ -27,7 +27,8 @@ const meta = defineCollection({
         "categories": z.array(z.object({
             id: z.number(),
             name: z.string(),
-            slug: z.string()
+            slug: z.string(),
+            "current-page-regex": z.string()
         })),
         "btns": z.object({
             "readmore": z.string(),

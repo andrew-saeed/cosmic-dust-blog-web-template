@@ -138,6 +138,15 @@ const {lang, dir} = Astro.props
             border-right: unset;
         }
     }
+    li {
+        &:has(.current-category-link) {
+            background: var(--black-light);
+            color: var(--white-dark);
+        }
+        &:not(:has(.current-category-link)):hover {
+            background-color: var(--white-dark);
+        }
+    }
 </style>
 <script>
     // init lang and dir on html ele

@@ -5,7 +5,15 @@ interface Props {
     lang: string
 }
 
-type Category = {id:number, count: number}
+type Category = {
+    count: number, 
+    data: {
+        name: string;
+        "current-page-regex": string;
+        id: number;
+        slug: string;
+    }
+}
 
 const {lang} = Astro.props
 const langsMeta = await getCollection('meta')
@@ -20,24 +28,31 @@ const posts = await getCollection('posts', post => {
 })
 const postsCategories = posts.reduce((acc: Record<number, Category>, post) => {
     const categoryId = post.data['category-id']
+    const categoryData = getCategory(categoryId)!
   
     if (acc[categoryId]) {
         acc[categoryId].count++
     } else {
-        acc[categoryId] = { id: categoryId, count: 1 }
+        acc[categoryId] = { count: 1, data: categoryData }
     }
   
     return acc
 }, {})
 
 const categoriesCollection: Category[] = Object.values(postsCategories)
+
+const isCurrentPage = (regexStr:string) => {
+    const {pathname} = Astro.url
+    const regex = new RegExp(regexStr)
+    return regex.test(pathname)
+}
 ---
 <ul class="flex flex-wrap gap-4">
     {
         categoriesCollection.map(category => {
-            return <li class="border border-black-dark rounded-md overflow-hidden [&:hover]:bg-white-dark">
-                <a href={`/${lang}/${getCategory(category.id)?.slug}/1/`} class="flex justify-between">
-                    <span class="category-name text-base-1 capitalize leading-base-1 px-4">{getCategory(category.id)?.name}</span>
+            return <li class="border border-black-dark rounded-md overflow-hidden">
+                <a href={`/${lang}/${category.data.slug}/1/`} class="flex justify-between">
+                    <span class:list={[{"current-category-link": isCurrentPage(category.data["current-page-regex"])}, "category-name text-base-1 capitalize leading-base-1 px-4"]}>{category.data.name}</span>
                     <span class="category-count flex items-center bg-black-dark text-sm-1 text-white-light px-4 py-1 self-stretch">{category.count}</span>
                 </a>
             </li>
