@@ -62,7 +62,7 @@ const getCategory = (categoryId:number) => {
 		}
 
 		<div id="paginator">
-			<Paginator currentPage={page.currentPage} lastPage={page.lastPage} currentLangMeta={currentLangMeta} />	
+			<Paginator currentPage={page.currentPage} lastPage={page.lastPage} currentLangMeta={currentLangMeta} baseUrl={`${currentLangMeta.id}`} />
 		</div>
 	</section>
 </Base>

@@ -6,11 +6,12 @@ interface Props {
     currentPage: number;
     lastPage: number;
     currentLangMeta: CollectionEntry<'meta'>;
+    baseUrl: string;
 }
 
-const {currentPage, lastPage, currentLangMeta} = Astro.props
-const nextLink = `/${currentLangMeta.id}/${currentPage+1}/`
-const prevLink = `/${currentLangMeta.id}/${currentPage-1}/`
+const {currentPage, lastPage, currentLangMeta, baseUrl} = Astro.props
+const nextLink = `/${baseUrl}/${currentPage+1}/`
+const prevLink = `/${baseUrl}/${currentPage-1}/`
 ---
 <div class="max-w-screen-sm flex justify-between mx-auto">
     <LinkBtn link={prevLink} disabled={(currentPage-1)===0}>{currentLangMeta.data.btns.prev}</LinkBtn>

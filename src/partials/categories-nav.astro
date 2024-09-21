@@ -15,7 +15,9 @@ const getCategory = (categoryId:number) => {
     return category
 }
 
-const posts = await getCollection('posts')
+const posts = await getCollection('posts', post => {
+    return post.slug.includes(currentLangMeta.id)
+})
 const postsCategories = posts.reduce((acc: Record<number, Category>, post) => {
     const categoryId = post.data['category-id']
   
