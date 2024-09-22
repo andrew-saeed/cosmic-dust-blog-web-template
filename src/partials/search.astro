@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content'
+
+interface Props {
+    lang: string;
+}
+
+const {lang} = Astro.props
+const posts = await getCollection('posts', post => {
+    return post.slug.includes(lang)
+})
+---
+<script>
+    const searchInput = document.querySelector<HTMLInputElement>('#search-input')!
+    const postsListItems = document.querySelectorAll<HTMLElement>('#posts-list li')!
+
+    searchInput.addEventListener('keyup', e => {
+        const searchInputValue = (e.target as HTMLInputElement).value.trim()
+        postsListItems.forEach(item => {
+            if(searchInputValue === "") {
+                item.style.display = 'none'
+                return
+            }else if(item.innerText.toLowerCase().includes(searchInputValue.toLowerCase())) {
+                item.style.display = 'block'
+            } else {
+                item.style.display = 'none'
+            }
+        })
+    })
+</script>
+<section class="relative z-20">
+    <input id="search-input" type="text" placeholder="Search ..." class="w-full bg-white-light text-base-2 p-2 border border-black-dark" />
+    <ul id="posts-list" 
+        class="absolute top-full left-0
+        w-full max-h-60
+        bg-white-light
+        text-base capitalize
+        border border-white-dark overflow-y-scroll
+        [&_li_a]:block [&_li_a]:px-2 [&_li_a]:py-2 [&_li_a:hover]:bg-white-dark [&_li]:border-white-dark
+        divide-y-[1px]"
+    >
+        {
+            posts.map(post => {
+                return <li class="hidden">
+                    <a href={`/${post.slug}/`}>{post.data.title}</a>
+                </li>
+            })
+        }
+    </ul>
+</section>

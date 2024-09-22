@@ -1,5 +1,6 @@
 ---
 import Nav from '../partials/nav.astro'
+import Search from '../partials/search.astro'
 import CategoriesNav from '../partials/categories-nav.astro'
 
 interface Props {
@@ -107,6 +108,9 @@ const {lang, dir} = Astro.props
         padding: 5rem 0.5rem;
         margin: 0rem auto;
     }
+    #main-section {
+        margin-top: 5rem;
+    }
     .disabled {
         opacity: 0.6;
         cursor: default;
@@ -138,10 +142,11 @@ const {lang, dir} = Astro.props
             border-right: unset;
         }
     }
-    li {
+    li.category-nav-item {
         &:has(.current-category-link) {
             background: var(--black-light);
             color: var(--white-dark);
+            font-weight: bold;
         }
         &:not(:has(.current-category-link)):hover {
             background-color: var(--white-dark);
@@ -172,7 +177,8 @@ const {lang, dir} = Astro.props
 
     <body data-lang={lang} data-dir={dir} class="bg-white-light text-base text-black-dark font-ibm-plex-sans">
         <Nav lang={lang}></Nav>
-        <main class="space-y-14">
+        <main>
+            <Search lang={lang} />
             <CategoriesNav lang={lang} />
             <slot name="main" />
         </main>
