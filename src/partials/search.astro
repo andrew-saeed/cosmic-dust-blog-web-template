@@ -13,9 +13,21 @@ const posts = await getCollection('posts', post => {
 <script>
     const searchInput = document.querySelector<HTMLInputElement>('#search-input')!
     const postsListItems = document.querySelectorAll<HTMLElement>('#posts-list li')!
+    const layoutMask = document.querySelector<HTMLElement>('#layout-mask')!
 
     searchInput.addEventListener('keyup', e => {
         const searchInputValue = (e.target as HTMLInputElement).value.trim()
+        if(searchInputValue.length > 0) {
+            layoutMask.style.visibility = 'visible'
+            layoutMask.style.opacity = '1'
+            document.body.style.overflowY = 'hidden'
+        }
+        else {
+            layoutMask.style.visibility = 'hidden'
+            layoutMask.style.opacity = '0'
+            document.body.style.overflowY = 'scroll'
+        }
+
         postsListItems.forEach(item => {
             if(searchInputValue === "") {
                 item.style.display = 'none'
@@ -36,8 +48,9 @@ const posts = await getCollection('posts', post => {
         bg-white-light
         text-base capitalize
         border border-white-dark overflow-y-scroll
-        [&_li_a]:block [&_li_a]:px-2 [&_li_a]:py-2 [&_li_a:hover]:bg-white-dark [&_li]:border-white-dark
-        divide-y-[1px]"
+        divide-y-[1px]
+        [&_li]:border-white-dark 
+        [&_li_a]:block [&_li_a]:px-2 [&_li_a]:py-2 [&_li_a:hover]:bg-white-dark"
     >
         {
             posts.map(post => {

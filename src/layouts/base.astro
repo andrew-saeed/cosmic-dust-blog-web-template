@@ -2,6 +2,7 @@
 import Nav from '../partials/nav.astro'
 import Search from '../partials/search.astro'
 import CategoriesNav from '../partials/categories-nav.astro'
+import LayoutMask from '../theme/layout-mask.astro'
 
 interface Props {
     lang: string;
@@ -176,6 +177,7 @@ const {lang, dir} = Astro.props
     <slot />
 
     <body data-lang={lang} data-dir={dir} class="bg-white-light text-base text-black-dark font-ibm-plex-sans">
+        <LayoutMask />
         <Nav lang={lang}></Nav>
         <main>
             <Search lang={lang} />
