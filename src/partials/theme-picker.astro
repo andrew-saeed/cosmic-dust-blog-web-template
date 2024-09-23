@@ -1,0 +1,28 @@
+---
+import Sun from '../icons/sun.astro'
+import Moon from '../icons/moon.astro'
+---
+<script>
+    const slider = document.querySelector<HTMLElement>('#slider')!
+    slider.addEventListener('click', () => {
+        if(slider.dataset.mode === 'light') {
+            slider.dataset.mode = 'dark'
+            slider.style.transform = 'translateY(-24px)'
+            document.documentElement.classList.toggle('dark')
+        } else {
+            slider.dataset.mode = 'light'
+            slider.style.transform = 'translateY(0)'
+            document.documentElement.classList.toggle('dark')
+        }
+    })
+</script>
+<div id="theme-picker" class="h-[1.5rem] overflow-hidden">
+    <div data-mode="light" id="slider" class="transition cursor-pointer">
+        <div id="light-mode" class="h-[1.5rem]">
+            <Sun />
+        </div>
+        <div id="dark-mode" class="h-[1.5rem]">
+            <Moon />
+        </div>
+    </div>
+</div>

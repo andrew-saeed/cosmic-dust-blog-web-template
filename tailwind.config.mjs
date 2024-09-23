@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+	darkMode: 'selector',
 	theme: {
 		extend: {
 			colors: {
@@ -17,6 +18,9 @@ export default {
 				'blue-dim': 'var(--blue-dim)',
 				'gray-light': 'var(--gray-light)',
 				'gray-dark': 'var(--gray-dark)',
+				'dark-white-light': 'var(--dark-white-light)',
+				'dark-white-dark': 'var(--dark-white-dark)',
+				'dark-black-dark': 'var(--dark-black-dark)'
 			},
 			screens: {
 				'xs': '320px',

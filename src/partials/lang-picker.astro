@@ -73,14 +73,14 @@ const currentLang = meta.filter(metaLang => {
     </div>
     <ul id="langs-list" 
         class="absolute top-full right-0
-        bg-black-dark
+        bg-black-dark dark:bg-dark-black-dark
         p-2
         transition duration-300 ease-in-out"
     >
         {
             availableLangs.map(lang => {
                 return <li>
-                    <a class="block px-2 hover:bg-black-light"
+                    <a class="block px-2 hover:bg-black-light hover:dark:bg-blue-light"
                         href={lang.data["lang-picker"].link}
                     >
                         {lang.data["lang-picker"].name}

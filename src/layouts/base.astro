@@ -25,11 +25,15 @@ const {lang, dir} = Astro.props
         --green: #49C055;
         --red: #ff5e32;
         --yellow: #FFC801;
-        --blue-light: #0198ef;
+        --blue-light: #38bdf8;
         --blue-dark: #5748AE;
         --blue-dim: rgba(87, 72, 174, 0.8);
         --gray-light: #bcbcbf;
         --gray-dark: #9ca3af;
+
+        --dark-white-light: rgb(1, 18, 34);
+        --dark-white-dark: #94a3b8;
+        --dark-black-dark: #1e293b;
     }
 
     // mixins
@@ -82,7 +86,6 @@ const {lang, dir} = Astro.props
     }
     ::-webkit-scrollbar-track {
         background-color: var(--white-light);
-        border: 0.1rem solid #ccc;
     }
     ::-webkit-scrollbar-button {
         background-color: var(--black-dark);
@@ -93,6 +96,23 @@ const {lang, dir} = Astro.props
     }
     ::-webkit-scrollbar-thumb:hover {
         background: var(--black-dark);
+    }
+    html[class=dark] {
+        ::-webkit-scrollbar-thumb {
+            background: var(--blue-dark);
+        }
+        ::-webkit-scrollbar-track {
+            background-color: var(--dark-black-dark);
+        }
+        ::-webkit-scrollbar-button {
+            background-color: var(--blue-dark);
+        }
+        ::-webkit-scrollbar-button:hover {
+            background: var(--blue-dark);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--blue-dark);
+        }
     }
     @supports not selector(::-webkit-scrollbar) {
     
@@ -148,9 +168,23 @@ const {lang, dir} = Astro.props
             background: var(--black-light);
             color: var(--white-dark);
             font-weight: bold;
+
+            html[class=dark] & {
+                background: var(--blue-dark);
+            }
         }
         &:not(:has(.current-category-link)):hover {
-            background-color: var(--white-dark);
+
+            .category-name {
+                background-color: var(--white-dark);
+            }
+
+            html[class=dark] & {
+
+                .category-name {
+                    background: var(--blue-light);
+                }
+            }
         }
     }
 </style>
@@ -158,6 +192,7 @@ const {lang, dir} = Astro.props
     // init lang and dir on html ele
     document.documentElement.lang = `${document.body.getAttribute('data-lang')}`
     document.documentElement.dir = `${document.body.getAttribute('data-dir')}`
+    document.documentElement.classList.toggle('dark')
 
     // linkBtns disabled will preventDefault
     const linkBtns = document.querySelectorAll<HTMLElement>('.link-btn')
@@ -176,7 +211,7 @@ const {lang, dir} = Astro.props
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <slot />
 
-    <body data-lang={lang} data-dir={dir} class="bg-white-light text-base text-black-dark font-ibm-plex-sans">
+    <body data-lang={lang} data-dir={dir} class="bg-white-light dark:bg-dark-white-light text-base text-black-dark dark:text-white-light font-ibm-plex-sans">
         <LayoutMask />
         <Nav lang={lang}></Nav>
         <main>

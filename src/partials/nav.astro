@@ -2,6 +2,8 @@
 import Logo from "./logo.astro"
 import Burger from "../icons/burger.astro"
 import LangPicker from "./lang-picker.astro"
+import ThemePicker from "./theme-picker.astro"
+
 import {getCollection} from "astro:content"
 
 interface Props {
@@ -48,9 +50,9 @@ const isCurrentPage = (regexStr:string) => {
         }
     })
 </script>
-<nav class="bg-black-dark">
+<nav class="bg-black-dark dark:bg-dark-black-dark">
     <div id="nav-layout"
-        class="max-w-screen-md grid grid-cols-[max-content_1fr_max-content] items-center justify-items-center
+        class="max-w-screen-lg grid grid-cols-[max-content_1fr_max-content] items-center justify-items-center
         text-white-light font-bold capitalize
         mx-auto md:p-2"
     >
@@ -80,15 +82,16 @@ const isCurrentPage = (regexStr:string) => {
             {
                 currentLangMeta[0]?.data.nav.map(item => {
                     return <li>
-                        <a class:list={[{"current-link":isCurrentPage(item["current-page-regex"])} ,"w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:bg-black-light"]} href={item.link}>{item.name}</a>
+                        <a class:list={[{"current-link":isCurrentPage(item["current-page-regex"])} ,"w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:bg-black-light hover:dark:bg-blue-light"]} href={item.link}>{item.name}</a>
                     </li>
                 })
             }
         </ul>
         <div 
             id="ctrls"
-            class="h-full row-start-1 row-end-2 col-start-3 col-end-4"
+            class="row-start-1 row-end-2 col-start-3 col-end-4 h-full flex items-center gap-3"
         >
+            <ThemePicker />
             <LangPicker lang={lang} />
         </div>
     </div>

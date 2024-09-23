@@ -41,16 +41,16 @@ const posts = await getCollection('posts', post => {
     })
 </script>
 <section class="relative z-20">
-    <input id="search-input" type="text" placeholder="Search ..." class="w-full bg-white-light text-base-2 p-2 border border-black-dark" />
+    <input id="search-input" type="text" placeholder="Search ..." class="w-full bg-white-light dark:bg-dark-black-dark text-base-2 p-2 border border-black-dark" />
     <ul id="posts-list" 
         class="absolute top-full left-0
         w-full max-h-60
-        bg-white-light
+        bg-white-light dark:bg-dark-black-dark
         text-base capitalize
         border border-white-dark overflow-y-scroll
         divide-y-[1px]
         [&_li]:border-white-dark 
-        [&_li_a]:block [&_li_a]:px-2 [&_li_a]:py-2 [&_li_a:hover]:bg-white-dark"
+        [&_li_a]:block [&_li_a]:px-2 [&_li_a]:py-2 [&_li_a:hover]:bg-white-dark [&_li_a:hover]:dark:bg-blue-light"
     >
         {
             posts.map(post => {
