@@ -9,6 +9,7 @@ const {lang} = Astro.props
 const posts = await getCollection('posts', post => {
     return post.slug.includes(lang)
 })
+const currentMeta = await getCollection('meta', meta => meta.id === lang)
 ---
 <script>
     const searchInput = document.querySelector<HTMLInputElement>('#search-input')!
@@ -41,7 +42,7 @@ const posts = await getCollection('posts', post => {
     })
 </script>
 <section class="relative z-20">
-    <input id="search-input" type="text" placeholder="Search ..." class="w-full bg-white-light dark:bg-dark-black-dark text-base-2 p-2 border border-black-dark" />
+    <input id="search-input" type="text" placeholder={currentMeta[0].data.btns.search} class="w-full bg-white-light dark:bg-dark-black-dark text-base-2 p-2 border border-black-dark" />
     <ul id="posts-list" 
         class="absolute top-full left-0
         w-full max-h-60

@@ -33,7 +33,8 @@ const meta = defineCollection({
         "btns": z.object({
             "readmore": z.string(),
             "next": z.string(),
-            "prev": z.string()
+            "prev": z.string(),
+            "search": z.string()
         })
     })
 })

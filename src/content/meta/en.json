@@ -82,6 +82,7 @@
     "btns": {
         "readmore": "read more",
         "next": "next",
-        "prev": "prev"
+        "prev": "prev",
+        "search": "search"
     }
 }
