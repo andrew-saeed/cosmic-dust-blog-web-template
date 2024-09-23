@@ -4,15 +4,15 @@ import Moon from '../icons/moon.astro'
 ---
 <script>
     const slider = document.querySelector<HTMLElement>('#slider')!
-    const cosmicDustTheme = localStorage.getItem('cosmic-dust-theme')
-    slider.addEventListener('click', () => {
+    slider.addEventListener('click', (e) => {
+        const cosmicDustTheme = localStorage.getItem('cosmic-dust-theme')
         if(cosmicDustTheme === 'light') {
             localStorage.setItem('cosmic-dust-theme', 'dark')
             slider.style.transform = 'translateY(-24px)'
             document.documentElement.classList.toggle('dark')
         } else {
             localStorage.setItem('cosmic-dust-theme', 'light')
-            slider.style.transform = 'translateY(0)'
+            slider.style.transform = 'translateY(0px)'
             document.documentElement.classList.toggle('dark')
         }
     })

@@ -192,8 +192,12 @@ const {lang, dir} = Astro.props
     // init lang, dir and theme on html ele
     document.documentElement.lang = `${document.body.getAttribute('data-lang')}`
     document.documentElement.dir = `${document.body.getAttribute('data-dir')}`
+    const slider = document.querySelector<HTMLElement>('#slider')!
     const cosmicDustTheme = localStorage.getItem('cosmic-dust-theme')
-    if(cosmicDustTheme === 'dark') document.documentElement.classList.toggle('dark')
+    if(cosmicDustTheme === 'dark') {
+        document.documentElement.classList.toggle('dark')
+        slider.style.transform = 'translateY(-24px)'
+    }
 
     // linkBtns disabled will preventDefault
     const linkBtns = document.querySelectorAll<HTMLElement>('.link-btn')
