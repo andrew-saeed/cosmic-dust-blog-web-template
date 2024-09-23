@@ -189,9 +189,11 @@ const {lang, dir} = Astro.props
     }
 </style>
 <script>
-    // init lang and dir on html ele
+    // init lang, dir and theme on html ele
     document.documentElement.lang = `${document.body.getAttribute('data-lang')}`
     document.documentElement.dir = `${document.body.getAttribute('data-dir')}`
+    const cosmicDustTheme = localStorage.getItem('cosmic-dust-theme')
+    if(cosmicDustTheme === 'dark') document.documentElement.classList.toggle('dark')
 
     // linkBtns disabled will preventDefault
     const linkBtns = document.querySelectorAll<HTMLElement>('.link-btn')
