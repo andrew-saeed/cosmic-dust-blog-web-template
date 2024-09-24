@@ -79,7 +79,7 @@ const isCurrentPage = (regexStr:string) => {
             row-start-1 row-end-2 col-start-1 col-end-2 md:hidden
             cursor-pointer"
             role="button"
-            tabindex="0"
+            tabindex="1"
             aria-label="open menu"
         >
             <Burger />
@@ -98,6 +98,7 @@ const isCurrentPage = (regexStr:string) => {
                     return <li>
                         <a  
                             aria-label={item.name}
+                            tabindex={index+2}
                             href={item.link}
                             class:list={[{"current-link":isCurrentPage(item["current-page-regex"])} ,"w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:bg-black-light hover:dark:bg-blue-light"]} 
                         >
