@@ -1,12 +1,14 @@
 ---
 interface Props {
+    ariaLabel: string;
     link: string;
     disabled: boolean;
 }
 
-const {link, disabled} = Astro.props
+const {ariaLabel, link, disabled} = Astro.props
 ---
 <a 
+    aria-label={ariaLabel}
     href={link}
     class:list={['link-btn', `text-base-1 text-white-light dark:text-white-light font-bold capitalize 
     bg-black-light dark:bg-blue-light [&:not(.disabled)]:hover:bg-black-dark [&:not(.disabled)]:hover:dark:bg-blue-dark

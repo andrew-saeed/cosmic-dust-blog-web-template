@@ -13,17 +13,20 @@ const currentMeta = await getCollection('meta', meta => meta.id === lang)
 ---
 <script>
     const searchInput = document.querySelector<HTMLInputElement>('#search-input')!
+    const postsList = document.querySelector<HTMLElement>('#posts-list')!
     const postsListItems = document.querySelectorAll<HTMLElement>('#posts-list li')!
     const layoutMask = document.querySelector<HTMLElement>('#layout-mask')!
 
     searchInput.addEventListener('keyup', e => {
         const searchInputValue = (e.target as HTMLInputElement).value.trim()
         if(searchInputValue.length > 0) {
+            postsList.style.visibility = 'visible'
             layoutMask.style.visibility = 'visible'
             layoutMask.style.opacity = '1'
             document.body.style.overflowY = 'hidden'
         }
         else {
+            postsList.style.visibility = 'hidden'
             layoutMask.style.visibility = 'hidden'
             layoutMask.style.opacity = '0'
             document.body.style.overflowY = 'scroll'
@@ -44,7 +47,8 @@ const currentMeta = await getCollection('meta', meta => meta.id === lang)
 <section class="relative z-20">
     <input id="search-input" type="text" placeholder={currentMeta[0].data.btns.search} class="w-full bg-white-light dark:bg-dark-black-dark text-base-2 p-2 border border-black-dark" />
     <ul id="posts-list" 
-        class="absolute top-full left-0
+        class="invisible
+        absolute top-full left-0
         w-full max-h-60
         bg-white-light dark:bg-dark-black-dark
         text-base capitalize
@@ -56,7 +60,7 @@ const currentMeta = await getCollection('meta', meta => meta.id === lang)
         {
             posts.map(post => {
                 return <li class="hidden">
-                    <a href={`/${post.slug}/`}>{post.data.title}</a>
+                    <a href={`/${post.slug}/`} aria-label={post.data.title}>{post.data.title}</a>
                 </li>
             })
         }

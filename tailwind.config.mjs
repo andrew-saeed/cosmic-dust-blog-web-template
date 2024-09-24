@@ -20,7 +20,8 @@ export default {
 				'gray-dark': 'var(--gray-dark)',
 				'dark-white-light': 'var(--dark-white-light)',
 				'dark-white-dark': 'var(--dark-white-dark)',
-				'dark-black-dark': 'var(--dark-black-dark)'
+				'dark-black-dark': 'var(--dark-black-dark)',
+				'dark-white-light-dim': 'var(--dark-white-light-dim)',
 			},
 			screens: {
 				'xs': '320px',

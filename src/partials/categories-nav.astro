@@ -49,9 +49,9 @@ const isCurrentPage = (regexStr:string) => {
 ---
 <ul class="flex flex-wrap gap-4 mt-4">
     {
-        categoriesCollection.map(category => {
+        categoriesCollection.map((category, index) => {
             return <li class="category-nav-item border border-black-dark rounded-md overflow-hidden">
-                <a href={`/${lang}/${category.data.slug}/1/`} class="flex justify-between">
+                <a href={`/${lang}/${category.data.slug}/1/`} class="flex justify-between" aria-label={category.data.name}>
                     <span class:list={[{"current-category-link": isCurrentPage(category.data["current-page-regex"])}, "category-name text-base-1 capitalize leading-base-1 px-4"]}>{category.data.name}</span>
                     <span class="category-count flex items-center bg-black-dark dark:bg-dark-black-dark text-sm-1 text-white-light px-4 py-1 self-stretch">{category.count}</span>
                 </a>

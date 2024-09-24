@@ -22,8 +22,7 @@ const isCurrentPage = (regexStr:string) => {
 }
 ---
 <script>
-    const trigger = document.querySelector<HTMLElement>('#trigger')!
-    const linksList = trigger.nextElementSibling! as HTMLElement
+    const linksList = document.querySelector<HTMLElement>('#links-list')!
         linksList.style.maxHeight = '0px'
     const linksListItems = linksList.querySelectorAll<HTMLElement>('li a')!
         linksListItems.forEach((item, index) => {
@@ -32,7 +31,10 @@ const isCurrentPage = (regexStr:string) => {
             item.style.transform = 'translateX(-150px)'
             item.style.opacity = '0'
         })
-    trigger.addEventListener('click', () => {
+    
+    // menu trigger
+    const trigger = document.querySelector<HTMLElement>('#trigger')!
+    const handleMenuToggle = () => {
         if(linksList.style.maxHeight === '0px') {
             linksList.style.transitionDelay = `0s`
             linksList.style.maxHeight = linksList.scrollHeight + 'px'
@@ -48,7 +50,16 @@ const isCurrentPage = (regexStr:string) => {
                 item.style.opacity = `0`
             })
         }
+    }
+    trigger.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            handleMenuToggle()
+            event.preventDefault()
+        } else if(event.key === 'Escape' && linksList.style.maxHeight !== '0px') {
+            handleMenuToggle()
+        }
     })
+    trigger.addEventListener('click', handleMenuToggle)
 </script>
 <nav class="bg-black-dark dark:bg-dark-black-dark">
     <div id="nav-layout"
@@ -67,6 +78,9 @@ const isCurrentPage = (regexStr:string) => {
             class="w-[3rem]
             row-start-1 row-end-2 col-start-1 col-end-2 md:hidden
             cursor-pointer"
+            role="button"
+            tabindex="0"
+            aria-label="open menu"
         >
             <Burger />
         </div>
@@ -80,9 +94,15 @@ const isCurrentPage = (regexStr:string) => {
             transition-[max-height] duration-300 ease-in-out"
         >
             {
-                currentLangMeta[0]?.data.nav.map(item => {
+                currentLangMeta[0]?.data.nav.map((item, index) => {
                     return <li>
-                        <a class:list={[{"current-link":isCurrentPage(item["current-page-regex"])} ,"w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:bg-black-light hover:dark:bg-blue-light"]} href={item.link}>{item.name}</a>
+                        <a  
+                            aria-label={item.name}
+                            href={item.link}
+                            class:list={[{"current-link":isCurrentPage(item["current-page-regex"])} ,"w-full block text-center font-bold p-2 md:!opacity-100 md:!translate-x-0 md:!delay-0 md:!duration-0 hover:bg-black-light hover:dark:bg-blue-light"]} 
+                        >
+                            {item.name}
+                        </a>
                     </li>
                 })
             }

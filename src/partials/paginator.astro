@@ -14,6 +14,6 @@ const nextLink = `/${baseUrl}/${currentPage+1}/`
 const prevLink = `/${baseUrl}/${currentPage-1}/`
 ---
 <div class="max-w-screen-sm flex justify-between mx-auto">
-    <LinkBtn link={prevLink} disabled={(currentPage-1)===0}>{currentLangMeta.data.btns.prev}</LinkBtn>
-    <LinkBtn link={nextLink} disabled={lastPage===currentPage}>{currentLangMeta.data.btns.next}</LinkBtn>
+    <LinkBtn link={prevLink} disabled={(currentPage-1)===0} ariaLabel={currentLangMeta.data.btns.prev}>{currentLangMeta.data.btns.prev}</LinkBtn>
+    <LinkBtn link={nextLink} disabled={lastPage===currentPage} ariaLabel={currentLangMeta.data.btns.next}>{currentLangMeta.data.btns.next}</LinkBtn>
 </div>
