@@ -190,6 +190,26 @@ const {lang, dir} = Astro.props
     }
 </style>
 <script>
+    // init alpinejs
+    import Alpine from 'alpinejs'
+
+    const uiStore:UiStore = {
+        layoutMask: document.querySelector<HTMLElement>('#layout-mask')!,
+
+        showLayoutMask() {
+            this.layoutMask.style.visibility = 'visible'
+            this.layoutMask.style.opacity = '1'
+            document.body.style.overflowY = 'hidden'
+        },
+        hideLayoutMask() {
+            this.layoutMask.style.visibility = 'hidden'
+            this.layoutMask.style.opacity = '0'
+            document.body.style.overflowY = 'scroll'
+        }
+    }
+    Alpine.store('uiStore', uiStore)
+    Alpine.start()
+
     // init lang, dir and theme on html ele
     document.documentElement.lang = `${document.body.getAttribute('data-lang')}`
     document.documentElement.dir = `${document.body.getAttribute('data-dir')}`

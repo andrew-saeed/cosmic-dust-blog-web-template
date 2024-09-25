@@ -1,5 +1,6 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import type { CollectionEntry } from 'astro:content'
+import FlatLinkBtn from '../theme/flat-link-btn.astro'
 
 interface Props {
     title: string;
@@ -24,6 +25,6 @@ const {title, date, category, excerpt, link, currentLangMeta} = Astro.props
     </header>
     <p class="text-base-1 leading-base-1 first-letter:capitalize">{excerpt}</p>
     <p class="text-base-1 leading-base-1 first-letter:capitalize hover:underline">
-        <a class="text-blue-dark dark:text-blue-light" href={`/${link}/`} aria-label="read more">{currentLangMeta.data.btns.readmore}</a>
+        <FlatLinkBtn link={link} text={currentLangMeta.data.btns.readmore} />
     </p>
 </article>

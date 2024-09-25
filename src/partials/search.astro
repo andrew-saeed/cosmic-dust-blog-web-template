@@ -12,24 +12,21 @@ const posts = await getCollection('posts', post => {
 const currentMeta = await getCollection('meta', meta => meta.id === lang)
 ---
 <script>
+    import Alpine from 'alpinejs'
+
     const searchInput = document.querySelector<HTMLInputElement>('#search-input')!
     const postsList = document.querySelector<HTMLElement>('#posts-list')!
     const postsListItems = document.querySelectorAll<HTMLElement>('#posts-list li')!
-    const layoutMask = document.querySelector<HTMLElement>('#layout-mask')!
 
     searchInput.addEventListener('keyup', e => {
         const searchInputValue = (e.target as HTMLInputElement).value.trim()
         if(searchInputValue.length > 0) {
-            postsList.style.visibility = 'visible'
-            layoutMask.style.visibility = 'visible'
-            layoutMask.style.opacity = '1'
-            document.body.style.overflowY = 'hidden'
+            postsList.style.visibility = 'visible';
+            (Alpine.store('uiStore') as UiStore).showLayoutMask()
         }
         else {
-            postsList.style.visibility = 'hidden'
-            layoutMask.style.visibility = 'hidden'
-            layoutMask.style.opacity = '0'
-            document.body.style.overflowY = 'scroll'
+            postsList.style.visibility = 'hidden';
+            (Alpine.store('uiStore') as UiStore).hideLayoutMask()
         }
 
         postsListItems.forEach(item => {

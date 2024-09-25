@@ -1,0 +1,17 @@
+---
+interface Props {
+    link: string;
+    text: string;
+}
+
+const {link, text} = Astro.props
+---
+<button
+    x-data
+    type="button" 
+    class="text-blue-dark dark:text-blue-light"
+    data-link={link}
+    @click="window.location.href = `/${$el.dataset.link}/`"
+>
+    {text}
+</button>
