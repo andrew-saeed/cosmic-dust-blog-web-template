@@ -6,7 +6,11 @@ import Moon from '../icons/moon.astro'
     const slider = document.querySelector<HTMLElement>('#slider')!
     slider.addEventListener('click', (e) => {
         const cosmicDustTheme = localStorage.getItem('cosmic-dust-theme')
-        if(cosmicDustTheme === 'light') {
+        if(cosmicDustTheme == null) {
+            localStorage.setItem('cosmic-dust-theme', 'dark')
+            slider.style.transform = 'translateY(-24px)'
+            document.documentElement.classList.toggle('dark')
+        } else if(cosmicDustTheme === 'light') {
             localStorage.setItem('cosmic-dust-theme', 'dark')
             slider.style.transform = 'translateY(-24px)'
             document.documentElement.classList.toggle('dark')
@@ -20,10 +24,10 @@ import Moon from '../icons/moon.astro'
 <div id="theme-picker" class="h-[1.5rem] overflow-hidden">
     <div id="slider" class="transition cursor-pointer">
         <div id="light-mode" class="w-[1.5rem] h-[1.5rem]">
-            <Sun />
+            <Moon />
         </div>
         <div id="dark-mode" class="w-[1.5rem] h-[1.5rem]">
-            <Moon />
+            <Sun />
         </div>
     </div>
 </div>

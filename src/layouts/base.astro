@@ -11,183 +11,232 @@ interface Props {
 
 const {lang, dir} = Astro.props
 ---
-<style lang="scss" is:global>
+<style is:global>
 
-    /* Color */
-    :root {
-        scroll-behavior: smooth;
+@import "tailwindcss";
 
-        --white-light: #FEFAE0;
-        --white-dark: #eae6cf;
-        --black-light: #475f2b;
-        --black-dark: #283618;
-        --black-dim: rgb(40, 54, 24, 0.8);
-        --green: #49C055;
-        --red: #ff5e32;
-        --yellow: #FFC801;
-        --blue-light: #38bdf8;
-        --blue-dark: #5748AE;
-        --blue-dim: rgba(87, 72, 174, 0.8);
-        --gray-light: #bcbcbf;
-        --gray-dark: #9ca3af;
+@config "../../tailwind.config.js";
 
-        --dark-white-light: #011222;
-        --dark-white-light-dim: rgba(1, 18, 34, 0.9);
-        --dark-white-dark: #94a3b8;
-        --dark-black-dark: #1e293b;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+
+    --text-sm: 0.75rem;
+    --text-sm--line-height: 1.375rem;
+
+    --text-sm-1: 0.875rem;
+    --text-sm-1--line-height: 1.5rem;
+
+    --text-base: 1rem;
+    --text-base--line-height: 1.625rem;
+
+    --text-base-1: 1.125rem;
+    --text-base-1--line-height: 1.75rem;
+
+    --text-base-2: 1.25rem;
+    --text-base-2--line-height: 1.875rem;
+
+    --text-medium: 1.375rem;
+    --text-medium--line-height: 2rem;
+
+    --text-medium-1: 1.5rem;
+    --text-medium-1--line-height: 2.125rem;
+
+    --text-medium-2: 1.875rem;
+    --text-medium-2--line-height: 2.34375rem;
+
+    --text-large: 2.25rem;
+    --text-large--line-height: 2.875rem;
+
+    --text-xlarge: 3.75rem;
+    --text-large--line-height: 4.375rem;
+
+    --color-white-light: #FEFAE0;
+    --color-white-dark: #eae6cf;
+    --color-black-light: #475f2b;
+    --color-black-dark: #283618;
+    --color-black-dim: rgb(40, 54, 24, 0.8);
+    --color-green: #49C055;
+    --color-red: #ff5e32;
+    --color-yellow: #FFC801;
+    --color-blue-light: #38bdf8;
+    --color-blue-dark: #5748AE;
+    --color-blue-dim: rgba(87, 72, 174, 0.8);
+    --color-gray-light: #bcbcbf;
+    --color-gray-dark: #9ca3af;
+
+    --color-dark-white-light: #011222;
+    --color-dark-white-light-dim: rgba(1, 18, 34, 0.9);
+    --color-dark-white-dark: #94a3b8;
+    --color-dark-black-dark: #1e293b;
+
+    --breakpoint-xs: 320px;
+    --breakpoint-sm: 425px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xlg: 1200px;
+    --breakpoint-2xlg: 1440px;
+
+    --shadow-base: 0px 0px 15px -5px var(--color-black-light);
+}
+
+@layer base {
+
+    html {
+        font-family: IBM Plex Sans,sans-serif;
     }
 
-    // mixins
-    @mixin withRtl($property, $ltr-value, $rtl-value) {
-        html[dir=ltr] & {
-            #{$property}: $ltr-value !important;
-        }
-
-        html[dir=rtl] & {
-            #{$property}: $rtl-value !important;
-        }
+    main {
+        max-width: 768px;
+        padding: 5rem 0.5rem;
+        margin: 0rem auto;
     }
 
-    // LTR-RTL padding
-    .right-left-padding-1 {
-        @include withRtl(padding, 0 1rem 0 0, 0 0 0 1rem);
-    }
-    .left-right-padding-1 {
-        @include withRtl(padding, 0 0 0 1rem, 0 1rem 0 0);
-    }
-    .md-left-right-padding-1 {
-        @media screen and (min-width:768px) {
-            @include withRtl(padding, 0 0 0 1rem, 0 1rem 0 0);
-        }
-    }
-
-    // LTR-RTL margin
-    .right-left-margin-1 {
-        @include withRtl(margin, 0 1rem 0 0, 0 0 0 1rem);
-    }
-    .left-right-margin-1 {
-        @include withRtl(margin, 0 0 0 1rem, 0 1rem 0 0);
-    }
-
-    /* Fonts */
-    .font-ibm-plex-sans {
-        font-family: "IBM Plex Sans", sans-serif;
-        font-optical-sizing: auto;
-        font-weight: 400;
-        font-style: normal;
-    }
-    
     /* Scrollbar */
     ::-webkit-scrollbar {
         width: 0.5rem;
     }
     ::-webkit-scrollbar-thumb {
-        background: var(--black-light);
+        background: var(--color-black-light);
         border-radius: 0rem;
     }
     ::-webkit-scrollbar-track {
-        background-color: var(--white-light);
+        background-color: var(--color-white-light);
     }
     ::-webkit-scrollbar-button {
-        background-color: var(--black-dark);
+        background-color: var(--color-black-dark);
         border-radius: 0rem;
     }
     ::-webkit-scrollbar-button:hover {
-        background: var(--black-dark);
+        background: var(--color-black-dark);
     }
     ::-webkit-scrollbar-thumb:hover {
-        background: var(--black-dark);
+        background: var(--color-black-dark);
     }
     html[class=dark] {
         ::-webkit-scrollbar-thumb {
-            background: var(--blue-dark);
+            background: var(--color-blue-dark);
         }
         ::-webkit-scrollbar-track {
-            background-color: var(--dark-black-dark);
+            background-color: var(--color-dark-black-dark);
         }
         ::-webkit-scrollbar-button {
-            background-color: var(--blue-dark);
+            background-color: var(--color-blue-dark);
         }
         ::-webkit-scrollbar-button:hover {
-            background: var(--blue-dark);
+            background: var(--color-blue-dark);
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--blue-dark);
+            background: var(--color-blue-dark);
         }
     }
     @supports not selector(::-webkit-scrollbar) {
     
         * {
             scrollbar-width: auto;
-            scrollbar-color: var(--white-light) var(--black-dark);
+            scrollbar-color: var(--color-white-light) var(--color-black-dark);
             scrollbar-gutter: stable both-edges;
         }
     }
+}
 
-    /* Main Theme */
-    main {
-        max-width: 768px;
-        padding: 5rem 0.5rem;
-        margin: 0rem auto;
-    }
+@layer components {
+
     #main-section {
-        margin-top: 5rem;
+        margin-top: 3rem;
     }
+
     .disabled {
         opacity: 0.6;
         cursor: default;
     }
+
     .markdown-content {
+
         h1 {
             font-size: 2.5rem;
             font-weight: bold;
+            line-height: var(--text-large--line-height);
             text-transform: capitalize;
         }
+
         h2 {
             font-size: 2.25rem;
             text-transform: capitalize;
             margin: 4rem 0 1.25rem 0;
         }
+
         ul {
             list-style: disc;
         }
+        
         p {
             font-size: 1.125rem;
         }
     }
-    .current-link {
-        border: var(--white-light) 0.1rem solid;
 
-        @media screen and (min-width:768px){
-            border-top: unset;
-            border-left: unset;
-            border-right: unset;
+    nav {
+
+        .current-link {
+            border: var(--color-white-light) 0.1rem solid;
+    
+            @media screen and (min-width:768px){
+                border-top: unset;
+                border-left: unset;
+                border-right: unset;
+            }
+        }
+
+        a {
+            padding: 0.5rem;
+            display: block;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+
+            &:hover {
+                background-color: var(--color-black-light);
+            }
+
+            html[class=dark] &:hover {
+                background-color: var(--color-blue-light);
+            }
+
+            @media screen and (min-width:768px) {
+                opacity: 1!important;
+                transform: translateX(0)!important; 
+                animation-delay: 0!important;
+                animation-duration: 0!important;
+            }
         }
     }
+
     li.category-nav-item {
+
         &:has(.current-category-link) {
-            background: var(--black-light);
-            color: var(--white-dark);
+            background: var(--color-black-light);
+            color: var(--color-white-dark);
             font-weight: bold;
 
             html[class=dark] & {
-                background: var(--blue-dark);
+                background: var(--color-blue-dark);
             }
         }
         &:not(:has(.current-category-link)):hover {
 
             .category-name {
-                background-color: var(--white-dark);
+                background-color: var(--color-white-dark);
             }
 
             html[class=dark] & {
 
                 .category-name {
-                    background: var(--blue-light);
+                    background: var(--color-blue-light);
                 }
             }
         }
     }
+}
 </style>
 <script>
     // init alpinejs
