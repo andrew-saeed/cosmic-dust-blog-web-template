@@ -33,8 +33,15 @@ const isCurrentPage = (regexStr:string) => {
         })
     
     // menu trigger
+    const updateAriaExpanded = (expanded: boolean) => {
+        trigger.setAttribute('aria-expanded', String(expanded))
+    }
     const trigger = document.querySelector<HTMLElement>('#trigger')!
     const handleMenuToggle = () => {
+
+        const isOpen = linksList.style.maxHeight === '0px'
+        updateAriaExpanded(isOpen)
+
         if(linksList.style.maxHeight === '0px') {
             linksList.style.transitionDelay = `0s`
             linksList.style.maxHeight = linksList.scrollHeight + 'px'
@@ -51,6 +58,7 @@ const isCurrentPage = (regexStr:string) => {
             })
         }
     }
+
     trigger.addEventListener('keydown', (event) => {
         if (event.key === 'Enter' || event.key === ' ') {
             handleMenuToggle()
@@ -59,9 +67,11 @@ const isCurrentPage = (regexStr:string) => {
             handleMenuToggle()
         }
     })
+
     trigger.addEventListener('click', handleMenuToggle)
 </script>
-<nav class="bg-black-dark dark:bg-dark-black-dark">
+<nav aria-label="Primary navigation" class="bg-black-dark dark:bg-dark-black-dark">
+
     <div id="nav-layout"
         class="max-w-screen-lg grid grid-cols-[max-content_1fr_max-content] items-center justify-items-center
         text-white-light font-bold capitalize
@@ -74,17 +84,15 @@ const isCurrentPage = (regexStr:string) => {
         >
             <Logo />
         </div>
-        <div id="trigger" 
+        <button id="trigger"
             class="w-[3rem]
             row-start-1 row-end-2 col-start-1 col-end-2 md:hidden
             cursor-pointer"
-            role="button"
-            tabindex="1"
-            aria-label="open menu"
+            aria-label="Toggle menu" aria-expanded="false" aria-controls="links-list"
         >
-            <Burger />
-        </div>
-        <ul id="links-list"
+            <Burger aria-hidden="true" />
+        </button>
+        <ul role="list" id="links-list"
             class="max-h-0 md:!max-h-[unset] w-full
             flex flex-col md:flex-row
             row-start-2 row-end-3 md:row-start-1 md:row-end-2 col-start-1 col-end-4 md:col-start-2 md:col-end-3
@@ -95,10 +103,9 @@ const isCurrentPage = (regexStr:string) => {
             {
                 currentLangMeta[0]?.data.nav.map((item, index) => {
 
-                    return <li>
+                    return <li role="listitem">
                         <a  
                             aria-label={item.name}
-                            tabindex={index+2}
                             href={item.link}
                             class:list={[
                                 {"current-link":isCurrentPage(item["current-page-regex"])}
